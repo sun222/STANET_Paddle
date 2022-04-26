@@ -2,8 +2,6 @@ import sys
 import paddle
 import os
 import argparse
-#加入环境
-sys.path.append('./STANET_Paddle/')
 import paddlers as pdrs
 from paddlers import transforms as T
 import paddle.nn as nn
@@ -58,4 +56,3 @@ if __name__ == "__main__":
     model.net.eval()
     eval_metrics = model.evaluate(eval_dataset)
     print(str(eval_metrics))
-  
