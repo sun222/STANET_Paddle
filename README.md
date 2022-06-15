@@ -11,16 +11,14 @@ STANet设计了两种类型的自我注意模块。基本时空注意模块(BAM)
 
 ## 2.复现精度
 
-在LEVIR的测试集的测试效果如下表,达到验收指标，F1-Score=0.8836   满足精度要求 
-model.pdiparams文件大小为9.2m
-model.pdmodel文件大小为3.5m，和为12.7m 满足要求
-综上所述 满足基本指标和挑战指标要求
+在LEVIR的测试集的测试效果如下表,达到验收指标，F1-Score=0.9146   满足精度要求 
+model.pdiparams文件大小为14.6m
+model.pdmodel文件大小为5.07m，和为19.67m 满足要求
+综上所述 满足挑战指标要求
 
 
 
 
-
-精度和loss可以用visualDL在`output\stanet\vdl_log\vdlrecords.1652296952.log`中查看。
 
 ## 3.环境依赖
 通过以下命令安装对应依赖
@@ -78,41 +76,17 @@ python ./STANET_Paddle/tools/create_list.py --image_folder ./dataset/test --A A 
 
 其他超参数已经设置好。最后一个epoch结束，模型验证日志如下：
 ```shell
-2022-05-12 09:04:44 [INFO]	[TRAIN] Epoch=100/100, Step=510/890, loss=0.010915, lr=0.000000, time_each_step=0.22s, eta=0:1:25
-2022-05-12 09:04:49 [INFO]	[TRAIN] Epoch=100/100, Step=530/890, loss=0.006785, lr=0.000000, time_each_step=0.24s, eta=0:1:25
-2022-05-12 09:04:53 [INFO]	[TRAIN] Epoch=100/100, Step=550/890, loss=0.026687, lr=0.000000, time_each_step=0.22s, eta=0:1:14
-2022-05-12 09:04:57 [INFO]	[TRAIN] Epoch=100/100, Step=570/890, loss=0.008460, lr=0.000000, time_each_step=0.22s, eta=0:1:10
-2022-05-12 09:05:02 [INFO]	[TRAIN] Epoch=100/100, Step=590/890, loss=0.011459, lr=0.000000, time_each_step=0.22s, eta=0:1:5
-2022-05-12 09:05:06 [INFO]	[TRAIN] Epoch=100/100, Step=610/890, loss=0.019418, lr=0.000000, time_each_step=0.22s, eta=0:1:1
-2022-05-12 09:05:11 [INFO]	[TRAIN] Epoch=100/100, Step=630/890, loss=0.005029, lr=0.000000, time_each_step=0.22s, eta=0:0:56
-2022-05-12 09:05:15 [INFO]	[TRAIN] Epoch=100/100, Step=650/890, loss=0.005506, lr=0.000000, time_each_step=0.22s, eta=0:0:52
-2022-05-12 09:05:19 [INFO]	[TRAIN] Epoch=100/100, Step=670/890, loss=0.015819, lr=0.000000, time_each_step=0.22s, eta=0:0:48
-2022-05-12 09:05:24 [INFO]	[TRAIN] Epoch=100/100, Step=690/890, loss=0.044369, lr=0.000000, time_each_step=0.22s, eta=0:0:43
-2022-05-12 09:05:28 [INFO]	[TRAIN] Epoch=100/100, Step=710/890, loss=0.015256, lr=0.000000, time_each_step=0.23s, eta=0:0:41
-2022-05-12 09:05:33 [INFO]	[TRAIN] Epoch=100/100, Step=730/890, loss=0.019745, lr=0.000000, time_each_step=0.23s, eta=0:0:37
-2022-05-12 09:05:38 [INFO]	[TRAIN] Epoch=100/100, Step=750/890, loss=0.018086, lr=0.000000, time_each_step=0.23s, eta=0:0:32
-2022-05-12 09:05:42 [INFO]	[TRAIN] Epoch=100/100, Step=770/890, loss=0.016677, lr=0.000000, time_each_step=0.23s, eta=0:0:27
-2022-05-12 09:05:47 [INFO]	[TRAIN] Epoch=100/100, Step=790/890, loss=0.001464, lr=0.000000, time_each_step=0.24s, eta=0:0:23
-2022-05-12 09:05:52 [INFO]	[TRAIN] Epoch=100/100, Step=810/890, loss=0.012966, lr=0.000000, time_each_step=0.23s, eta=0:0:18
-2022-05-12 09:05:56 [INFO]	[TRAIN] Epoch=100/100, Step=830/890, loss=0.023754, lr=0.000000, time_each_step=0.23s, eta=0:0:13
-2022-05-12 09:06:01 [INFO]	[TRAIN] Epoch=100/100, Step=850/890, loss=0.028769, lr=0.000000, time_each_step=0.22s, eta=0:0:8
-2022-05-12 09:06:05 [INFO]	[TRAIN] Epoch=100/100, Step=870/890, loss=0.032295, lr=0.000000, time_each_step=0.23s, eta=0:0:4
-2022-05-12 09:06:09 [INFO]	[TRAIN] Epoch=100/100, Step=890/890, loss=0.007821, lr=0.000000, time_each_step=0.22s, eta=0:0:0
-2022-05-12 09:06:09 [INFO]	[TRAIN] Epoch 100 finished, loss=0.015338902 .
-2022-05-12 09:06:09 [WARNING]	Segmenter only supports batch_size=1 for each gpu/cpu card during evaluation, so batch_size is forcibly set to 1.
-2022-05-12 09:06:09 [INFO]	Start to evaluate(total_samples=1024, total_steps=1024)...
-2022-05-12 09:06:56 [INFO]	[EVAL] Finished, Epoch=100, miou=0.885875, category_iou=[0.99009678 0.78165347], oacc=0.990436, category_acc=[0.9919836  0.94908052], kappa=0.872500, category_F1-score=[0.99502375 0.87744725] .
-2022-05-12 09:06:56 [INFO]	Current evaluated best model on eval_dataset is epoch_90, miou=0.8907833212298902
-2022-05-12 09:06:56 [INFO]	Model saved in ./output1/stanet/epoch_100.
+
 ```
-最好的结果在第78个epoch test时达到验收指标。
+达到验收指标。
 
 
 ### 模型验证
 
-除了可以再训练过程中验证模型精度，可以使用stanet_eval_bone.py脚本进行测试，权重文件可在[百度云盘下载](https://pan.baidu.com/s/1t0cA023mR6wRuusqS69LGg)，提取码:ju9y
-
-推理模型文件可在[百度云盘下载](https://pan.baidu.com/s/1smgCWKVarhVo6jR35mshlw)，提取码:y66i
+除了可以再训练过程中验证模型精度，可以使用stanet_eval_bone.py脚本进行测试，
+推理模型为：
+链接：https://pan.baidu.com/s/1V-womwe2ctN6dASNCgf5aQ 
+提取码：63eu
 
 ```shell
 !python ./STANET_Paddle/tutorials/eval/stanet_eval_bone.py --data_dir=./dataset/   --state_dict_path=./output1/stanet/best_model/model.pdparams
@@ -126,15 +100,6 @@ python ./STANET_Paddle/tools/create_list.py --image_folder ./dataset/test --A A 
 输出如下：
 
 ```shell
-W0512 13:14:51.696345   848 device_context.cc:447] Please NOTE: device: 0, GPU Compute Capability: 7.0, Driver API Version: 11.2, Runtime API Version: 10.1
-W0512 13:14:51.700948   848 device_context.cc:465] device: 0, cuDNN Version: 7.6.
-2022-05-12 13:14:53 INFO: unique_endpoints {''}
-2022-05-12 13:14:53 INFO: Downloading MobileNetV3_small_x1_25_pretrained.pdparams from https://paddle-imagenet-models-name.bj.bcebos.com/dygraph/legendary_models/MobileNetV3_small_x1_25_pretrained.pdparams
-100%|██████████████████████████████████| 21522/21522 [00:00<00:00, 31674.98it/s]
-2022-05-12 13:14:54 [INFO]	Loading pretrained model from ./output1/stanet/best_model/model.pdparams
-2022-05-12 13:14:54 [INFO]	There are 298/298 variables loaded into STANet.
-2022-05-12 13:14:54 [INFO]	Start to evaluate(total_samples=1024, total_steps=1024)...
-OrderedDict([('miou', 0.8907833212298902), ('category_iou', array([0.99046551, 0.79110114])), ('oacc', 0.9907977730035782), ('category_acc', array([0.99261029, 0.94353635])), ('kappa', 0.8785986638407448), ('category_F1-score', array([0.99520992, 0.88336847]))])
 ```
 
 
@@ -182,6 +147,120 @@ OrderedDict([('miou', 0.8907833212298902), ('category_iou', array([0.99046551, 0
 - output_dir：预测结果输出路径
 
 
+```shell
+[06-15 18:15:54 MainThread @logger.py:242] Argv: ./STANET_Paddle/tutorials/stanet_infer_eval.py --infer_dir=./home/aistudio/inference_model_bone/ --img_dir=./dataset/ --output_dir=./STANET_Paddle/test_tipc/result/predict_output
+[06-15 18:15:54 MainThread @utils.py:79] WRN paddlepaddle version: 2.3.0. The dynamic graph version of PARL is under development, not fully tested and supported
+2022-06-15 18:15:55,183-WARNING: type object 'QuantizationTransformPass' has no attribute '_supported_quantizable_op_type'
+2022-06-15 18:15:55,183-WARNING: If you want to use training-aware and post-training quantization, please use Paddle >= 1.8.4 or develop version
+--------------------------------------------------------------------------
+                      Models supported by PaddleClas                      
++-------------------+----------------------------------------------------+
+|       Series      |                        Name                        |
++-------------------+----------------------------------------------------+
+|      AlexNet      |                      AlexNet                       |
+|      DarkNet      |                     DarkNet53                      |
+|        DeiT       |          DeiT_base_distilled_patch16_224           |
+|                   |          DeiT_base_distilled_patch16_384           |
+|                   |    DeiT_base_patch16_224  DeiT_base_patch16_384    |
+|                   |          DeiT_small_distilled_patch16_224          |
+|                   |               DeiT_small_patch16_224               |
+|                   |          DeiT_tiny_distilled_patch16_224           |
+|                   |               DeiT_tiny_patch16_224                |
+|      DenseNet     | DenseNet121  DenseNet161  DenseNet169  DenseNet201 |
+|                   |                    DenseNet264                     |
+|        DLA        |  DLA46_c  DLA60x_c  DLA34  DLA60  DLA60x  DLA102   |
+|                   |             DLA102x  DLA102x2  DLA169              |
+|        DPN        |        DPN68  DPN92  DPN98  DPN107  DPN131         |
+|    EfficientNet   |        EfficientNetB0  EfficientNetB0_small        |
+|                   |   EfficientNetB1  EfficientNetB2  EfficientNetB3   |
+|                   |   EfficientNetB4  EfficientNetB5  EfficientNetB6   |
+|                   |                   EfficientNetB7                   |
+|       ESNet       |  ESNet_x0_25  ESNet_x0_5  ESNet_x0_75  ESNet_x1_0  |
+|      GhostNet     |    GhostNet_x0_5  GhostNet_x1_0  GhostNet_x1_3     |
+|                   |                 GhostNet_x1_3_ssld                 |
+|      HarDNet      |  HarDNet39_ds  HarDNet68_ds  HarDNet68  HarDNet85  |
+|       HRNet       | HRNet_W18_C  HRNet_W30_C  HRNet_W32_C  HRNet_W40_C |
+|                   |       HRNet_W44_C  HRNet_W48_C  HRNet_W64_C        |
+|                   |         HRNet_W18_C_ssld  HRNet_W48_C_ssld         |
+|     Inception     |        GoogLeNet  InceptionV3  InceptionV4         |
+|       MixNet      |            MixNet_S  MixNet_M  MixNet_L            |
+|    MobileNetV1    |        MobileNetV1_x0_25  MobileNetV1_x0_5         |
+|                   |  MobileNetV1_x0_75  MobileNetV1  MobileNetV1_ssld  |
+|    MobileNetV2    |        MobileNetV2_x0_25  MobileNetV2_x0_5         |
+|                   |  MobileNetV2_x0_75  MobileNetV2  MobileNetV2_x1_5  |
+|                   |         MobileNetV2_x2_0  MobileNetV2_ssld         |
+|    MobileNetV3    |  MobileNetV3_small_x0_35  MobileNetV3_small_x0_5   |
+|                   |  MobileNetV3_small_x0_75  MobileNetV3_small_x1_0   |
+|                   |  MobileNetV3_small_x1_25  MobileNetV3_large_x0_35  |
+|                   |  MobileNetV3_large_x0_5  MobileNetV3_large_x0_75   |
+|                   |  MobileNetV3_large_x1_0  MobileNetV3_large_x1_25   |
+|                   |            MobileNetV3_small_x1_0_ssld             |
+|                   |            MobileNetV3_large_x1_0_ssld             |
+|      PPLCNet      |     PPLCNet_x0_25  PPLCNet_x0_35  PPLCNet_x0_5     |
+|                   |     PPLCNet_x0_75  PPLCNet_x1_0  PPLCNet_x1_5      |
+|                   |             PPLCNet_x2_0  PPLCNet_x2_5             |
+|       RedNet      | RedNet26  RedNet38  RedNet50  RedNet101  RedNet152 |
+|       RegNet      |                    RegNetX_4GF                     |
+|      Res2Net      |         Res2Net50_14w_8s  Res2Net50_26w_4s         |
+|                   |     Res2Net50_vd_26w_4s  Res2Net200_vd_26w_4s      |
+|                   |   Res2Net101_vd_26w_4s  Res2Net50_vd_26w_4s_ssld   |
+|                   |             Res2Net101_vd_26w_4s_ssld              |
+|                   |             Res2Net200_vd_26w_4s_ssld              |
+|      ResNeSt      |         ResNeSt50  ResNeSt50_fast_1s1x64d          |
+|       ResNet      |    ResNet18  ResNet18_vd  ResNet34  ResNet34_vd    |
+|                   | ResNet50  ResNet50_vc  ResNet50_vd  ResNet50_vd_v2 |
+|                   |  ResNet101  ResNet101_vd  ResNet152  ResNet152_vd  |
+|                   |  ResNet200_vd  ResNet34_vd_ssld  ResNet50_vd_ssld  |
+|                   |       ResNet50_vd_ssld_v2  ResNet101_vd_ssld       |
+|                   |   Fix_ResNet50_vd_ssld_v2  ResNet50_ACNet_deploy   |
+|      ResNeXt      |        ResNeXt50_32x4d  ResNeXt50_vd_32x4d         |
+|                   |        ResNeXt50_64x4d  ResNeXt50_vd_64x4d         |
+|                   |       ResNeXt101_32x4d  ResNeXt101_vd_32x4d        |
+|                   |    ResNeXt101_32x8d_wsl  ResNeXt101_32x16d_wsl     |
+|                   |    ResNeXt101_32x32d_wsl  ResNeXt101_32x48d_wsl    |
+|                   |    Fix_ResNeXt101_32x48d_wsl  ResNeXt101_64x4d     |
+|                   |       ResNeXt101_vd_64x4d  ResNeXt152_32x4d        |
+|                   |       ResNeXt152_vd_32x4d  ResNeXt152_64x4d        |
+|                   |                ResNeXt152_vd_64x4d                 |
+|       ReXNet      |   ReXNet_1_0  ReXNet_1_3  ReXNet_1_5  ReXNet_2_0   |
+|                   |                     ReXNet_3_0                     |
+|       SENet       |  SENet154_vd  SE_HRNet_W64_C_ssld  SE_ResNet18_vd  |
+|                   | SE_ResNet34_vd  SE_ResNet50_vd  SE_ResNeXt50_32x4d |
+|                   |     SE_ResNeXt50_vd_32x4d  SE_ResNeXt101_32x4d     |
+|    ShuffleNetV2   |       ShuffleNetV2_swish  ShuffleNetV2_x0_25       |
+|                   |       ShuffleNetV2_x0_33  ShuffleNetV2_x0_5        |
+|                   |        ShuffleNetV2_x1_0  ShuffleNetV2_x1_5        |
+|                   |                 ShuffleNetV2_x2_0                  |
+|     SqueezeNet    |            SqueezeNet1_0  SqueezeNet1_1            |
+|  SwinTransformer  |  SwinTransformer_large_patch4_window7_224_22kto1k  |
+|                   | SwinTransformer_large_patch4_window12_384_22kto1k  |
+|                   |  SwinTransformer_base_patch4_window7_224_22kto1k   |
+|                   |  SwinTransformer_base_patch4_window12_384_22kto1k  |
+|                   |      SwinTransformer_base_patch4_window12_384      |
+|                   |      SwinTransformer_base_patch4_window7_224       |
+|                   |      SwinTransformer_small_patch4_window7_224      |
+|                   |      SwinTransformer_tiny_patch4_window7_224       |
+|       Twins       |        pcpvt_small  pcpvt_base  pcpvt_large        |
+|                   |     alt_gvt_small  alt_gvt_base  alt_gvt_large     |
+|        VGG        |             VGG11  VGG13  VGG16  VGG19             |
+| VisionTransformer |     ViT_base_patch16_224  ViT_base_patch16_384     |
+|                   |    ViT_base_patch32_384  ViT_large_patch16_224     |
+|                   |    ViT_large_patch16_384  ViT_large_patch32_384    |
+|                   |               ViT_small_patch16_224                |
+|      Xception     |     Xception41  Xception41_deeplab  Xception65     |
+|                   |           Xception65_deeplab  Xception71           |
++-------------------+----------------------------------------------------+
+                                                  Powered by PaddlePaddle!
+--------------------------------------------------------------------------
+2022-06-15 18:15:55 [INFO]	1024 samples in file ./dataset/val.txt
+2022-06-15 18:15:55 [INFO]	Model[STANet] loaded.
+[0.9962995 0.9146327]
+
+
+```
+
+
+
 ### TIPC基础链条测试
 
 该部分依赖auto_log，需要进行安装，安装方式如下：
@@ -204,12 +283,695 @@ bash  ./STANET_Paddle/test_tipc/test_train_inference_python.sh ./STANET_Paddle/t
 
 测试结果如截图所示
 
-<img src=./docs/1.png></img>
+```shell
 
-<img src=./docs/2.png></img>
-<img src=./docs/3.png></img>
-<img src=./docs/4.png></img>
-<img src=./docs/5.png></img>
+aistudio@jupyter-2315405-4166493:~$ bash  ./STANET_Paddle/test_tipc/test_train_inference_python.sh ./STANET_Paddle/test_tipc/configs/stanet/train_infer_python.txt 'lite_train_lite_infer'
+[06-15 18:31:47 MainThread @logger.py:242] Argv: ./STANET_Paddle/tutorials/train/stanet_train_bonesmall.py --data_dir=./STANET_Paddle/test_tipc/data/mini_levir_dataset --out_dir=./STANET_Paddle/test_tipc/result/stanet/ --num_epoch=6 --save_epoch=2 --batch_size=2
+[06-15 18:31:47 MainThread @utils.py:79] WRN paddlepaddle version: 2.3.0. The dynamic graph version of PARL is under development, not fully tested and supported
+2022-06-15 18:31:47,700-WARNING: type object 'QuantizationTransformPass' has no attribute '_supported_quantizable_op_type'
+2022-06-15 18:31:47,701-WARNING: If you want to use training-aware and post-training quantization, please use Paddle >= 1.8.4 or develop version
+------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+                                                                     Models supported by PaddleClas                                                                     
++-------------------+--------------------------------------------------------------------------------------------------------------------------------------------------+
+|       Series      |                                                                       Name                                                                       |
++-------------------+--------------------------------------------------------------------------------------------------------------------------------------------------+
+|      AlexNet      |                                                                     AlexNet                                                                      |
+|      DarkNet      |                                                                    DarkNet53                                                                     |
+|        DeiT       | DeiT_base_distilled_patch16_224  DeiT_base_distilled_patch16_384  DeiT_base_patch16_224  DeiT_base_patch16_384  DeiT_small_distilled_patch16_224 |
+|                   |                                  DeiT_small_patch16_224  DeiT_tiny_distilled_patch16_224  DeiT_tiny_patch16_224                                  |
+|      DenseNet     |                                         DenseNet121  DenseNet161  DenseNet169  DenseNet201  DenseNet264                                          |
+|        DLA        |                                    DLA46_c  DLA60x_c  DLA34  DLA60  DLA60x  DLA102  DLA102x  DLA102x2  DLA169                                    |
+|        DPN        |                                                       DPN68  DPN92  DPN98  DPN107  DPN131                                                        |
+|    EfficientNet   |       EfficientNetB0  EfficientNetB0_small  EfficientNetB1  EfficientNetB2  EfficientNetB3  EfficientNetB4  EfficientNetB5  EfficientNetB6       |
+|                   |                                                                  EfficientNetB7                                                                  |
+|       ESNet       |                                                 ESNet_x0_25  ESNet_x0_5  ESNet_x0_75  ESNet_x1_0                                                 |
+|      GhostNet     |                                         GhostNet_x0_5  GhostNet_x1_0  GhostNet_x1_3  GhostNet_x1_3_ssld                                          |
+|      HarDNet      |                                                 HarDNet39_ds  HarDNet68_ds  HarDNet68  HarDNet85                                                 |
+|       HRNet       |          HRNet_W18_C  HRNet_W30_C  HRNet_W32_C  HRNet_W40_C  HRNet_W44_C  HRNet_W48_C  HRNet_W64_C  HRNet_W18_C_ssld  HRNet_W48_C_ssld           |
+|     Inception     |                                                       GoogLeNet  InceptionV3  InceptionV4                                                        |
+|       MixNet      |                                                           MixNet_S  MixNet_M  MixNet_L                                                           |
+|    MobileNetV1    |                              MobileNetV1_x0_25  MobileNetV1_x0_5  MobileNetV1_x0_75  MobileNetV1  MobileNetV1_ssld                               |
+|    MobileNetV2    |            MobileNetV2_x0_25  MobileNetV2_x0_5  MobileNetV2_x0_75  MobileNetV2  MobileNetV2_x1_5  MobileNetV2_x2_0  MobileNetV2_ssld             |
+|    MobileNetV3    |            MobileNetV3_small_x0_35  MobileNetV3_small_x0_5  MobileNetV3_small_x0_75  MobileNetV3_small_x1_0  MobileNetV3_small_x1_25             |
+|                   |            MobileNetV3_large_x0_35  MobileNetV3_large_x0_5  MobileNetV3_large_x0_75  MobileNetV3_large_x1_0  MobileNetV3_large_x1_25             |
+|                   |                                             MobileNetV3_small_x1_0_ssld  MobileNetV3_large_x1_0_ssld                                             |
+|      PPLCNet      |                PPLCNet_x0_25  PPLCNet_x0_35  PPLCNet_x0_5  PPLCNet_x0_75  PPLCNet_x1_0  PPLCNet_x1_5  PPLCNet_x2_0  PPLCNet_x2_5                 |
+|       RedNet      |                                                RedNet26  RedNet38  RedNet50  RedNet101  RedNet152                                                |
+|       RegNet      |                                                                   RegNetX_4GF                                                                    |
+|      Res2Net      |          Res2Net50_14w_8s  Res2Net50_26w_4s  Res2Net50_vd_26w_4s  Res2Net200_vd_26w_4s  Res2Net101_vd_26w_4s  Res2Net50_vd_26w_4s_ssld           |
+|                   |                                               Res2Net101_vd_26w_4s_ssld  Res2Net200_vd_26w_4s_ssld                                               |
+|      ResNeSt      |                                                        ResNeSt50  ResNeSt50_fast_1s1x64d                                                         |
+|       ResNet      |       ResNet18  ResNet18_vd  ResNet34  ResNet34_vd  ResNet50  ResNet50_vc  ResNet50_vd  ResNet50_vd_v2  ResNet101  ResNet101_vd  ResNet152       |
+|                   |         ResNet152_vd  ResNet200_vd  ResNet34_vd_ssld  ResNet50_vd_ssld  ResNet50_vd_ssld_v2  ResNet101_vd_ssld  Fix_ResNet50_vd_ssld_v2          |
+|                   |                                                              ResNet50_ACNet_deploy                                                               |
+|      ResNeXt      |      ResNeXt50_32x4d  ResNeXt50_vd_32x4d  ResNeXt50_64x4d  ResNeXt50_vd_64x4d  ResNeXt101_32x4d  ResNeXt101_vd_32x4d  ResNeXt101_32x8d_wsl       |
+|                   |      ResNeXt101_32x16d_wsl  ResNeXt101_32x32d_wsl  ResNeXt101_32x48d_wsl  Fix_ResNeXt101_32x48d_wsl  ResNeXt101_64x4d  ResNeXt101_vd_64x4d       |
+|                   |                                   ResNeXt152_32x4d  ResNeXt152_vd_32x4d  ResNeXt152_64x4d  ResNeXt152_vd_64x4d                                   |
+|       ReXNet      |                                            ReXNet_1_0  ReXNet_1_3  ReXNet_1_5  ReXNet_2_0  ReXNet_3_0                                            |
+|       SENet       | SENet154_vd  SE_HRNet_W64_C_ssld  SE_ResNet18_vd  SE_ResNet34_vd  SE_ResNet50_vd  SE_ResNeXt50_32x4d  SE_ResNeXt50_vd_32x4d  SE_ResNeXt101_32x4d |
+|    ShuffleNetV2   |      ShuffleNetV2_swish  ShuffleNetV2_x0_25  ShuffleNetV2_x0_33  ShuffleNetV2_x0_5  ShuffleNetV2_x1_0  ShuffleNetV2_x1_5  ShuffleNetV2_x2_0      |
+|     SqueezeNet    |                                                           SqueezeNet1_0  SqueezeNet1_1                                                           |
+|  SwinTransformer  |                       SwinTransformer_large_patch4_window7_224_22kto1k  SwinTransformer_large_patch4_window12_384_22kto1k                        |
+|                   |   SwinTransformer_base_patch4_window7_224_22kto1k  SwinTransformer_base_patch4_window12_384_22kto1k  SwinTransformer_base_patch4_window12_384    |
+|                   |            SwinTransformer_base_patch4_window7_224  SwinTransformer_small_patch4_window7_224  SwinTransformer_tiny_patch4_window7_224            |
+|       Twins       |                                 pcpvt_small  pcpvt_base  pcpvt_large  alt_gvt_small  alt_gvt_base  alt_gvt_large                                 |
+|        VGG        |                                                            VGG11  VGG13  VGG16  VGG19                                                            |
+| VisionTransformer |      ViT_base_patch16_224  ViT_base_patch16_384  ViT_base_patch32_384  ViT_large_patch16_224  ViT_large_patch16_384  ViT_large_patch32_384       |
+|                   |                                                              ViT_small_patch16_224                                                               |
+|      Xception     |                                    Xception41  Xception41_deeplab  Xception65  Xception65_deeplab  Xception71                                    |
++-------------------+--------------------------------------------------------------------------------------------------------------------------------------------------+
+                                                                                                                                                Powered by PaddlePaddle!
+------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+2022-06-15 18:31:47 [INFO]      16 samples in file ./STANET_Paddle/test_tipc/data/mini_levir_dataset/train.txt
+2022-06-15 18:31:47 [INFO]      8 samples in file ./STANET_Paddle/test_tipc/data/mini_levir_dataset/val.txt
+W0615 18:31:47.809813  6982 gpu_context.cc:278] Please NOTE: device: 0, GPU Compute Capability: 8.0, Driver API Version: 11.2, Runtime API Version: 11.2
+W0615 18:31:47.812942  6982 gpu_context.cc:306] device: 0, cuDNN Version: 8.2.
+INFO 2022-06-15 18:31:50,207 logger.py:79] unique_endpoints {''}
+[2022/06/15 18:31:50] root INFO: unique_endpoints {''}
+INFO 2022-06-15 18:31:50,207 logger.py:79] Found /home/aistudio/.paddleclas/weights/ESNet_x1_0_pretrained.pdparams
+[2022/06/15 18:31:50] root INFO: Found /home/aistudio/.paddleclas/weights/ESNet_x1_0_pretrained.pdparams
+2022-06-15 18:31:55 [INFO]      [TRAIN] Epoch 1 finished, loss=0.43874335 .
+2022-06-15 18:31:56 [INFO]      [TRAIN] Epoch 2 finished, loss=0.1586074 .
+2022-06-15 18:31:56 [WARNING]   Segmenter only supports batch_size=1 for each gpu/cpu card during evaluation, so batch_size is forcibly set to 1.
+2022-06-15 18:31:56 [INFO]      Start to evaluate(total_samples=8, total_steps=8)...
+2022-06-15 18:31:57 [INFO]      [EVAL] Finished, Epoch=2, miou=0.493079, category_iou=[0.98615837 0.        ], oacc=0.986158, category_acc=[0.98615837 0.        ], kappa=0.000000, category_F1-score=[0.99303095 0.        ] .
+2022-06-15 18:31:57 [INFO]      Model saved in ./STANET_Paddle/test_tipc/result/stanet/best_model.
+2022-06-15 18:31:57 [INFO]      Current evaluated best model on eval_dataset is epoch_2, miou=0.49307918548583984
+2022-06-15 18:31:57 [INFO]      Model saved in ./STANET_Paddle/test_tipc/result/stanet/epoch_2.
+2022-06-15 18:31:59 [INFO]      [TRAIN] Epoch 3 finished, loss=0.15517747 .
+2022-06-15 18:32:00 [INFO]      [TRAIN] Epoch 4 finished, loss=0.13931209 .
+2022-06-15 18:32:00 [WARNING]   Segmenter only supports batch_size=1 for each gpu/cpu card during evaluation, so batch_size is forcibly set to 1.
+2022-06-15 18:32:00 [INFO]      Start to evaluate(total_samples=8, total_steps=8)...
+2022-06-15 18:32:01 [INFO]      [EVAL] Finished, Epoch=4, miou=0.493079, category_iou=[0.98615837 0.        ], oacc=0.986158, category_acc=[0.98615837 0.        ], kappa=0.000000, category_F1-score=[0.99303095 0.        ] .
+2022-06-15 18:32:01 [INFO]      Current evaluated best model on eval_dataset is epoch_2, miou=0.49307918548583984
+2022-06-15 18:32:01 [INFO]      Model saved in ./STANET_Paddle/test_tipc/result/stanet/epoch_4.
+2022-06-15 18:32:03 [INFO]      [TRAIN] Epoch 5 finished, loss=0.17409432 .
+2022-06-15 18:32:04 [INFO]      [TRAIN] Epoch 6 finished, loss=0.13709755 .
+2022-06-15 18:32:04 [WARNING]   Segmenter only supports batch_size=1 for each gpu/cpu card during evaluation, so batch_size is forcibly set to 1.
+2022-06-15 18:32:04 [INFO]      Start to evaluate(total_samples=8, total_steps=8)...
+2022-06-15 18:32:05 [INFO]      [EVAL] Finished, Epoch=6, miou=0.492938, category_iou=[0.98587608 0.        ], oacc=0.985876, category_acc=[0.98615446 0.        ], kappa=-0.000554, category_F1-score=[0.99288782        nan] .
+2022-06-15 18:32:05 [INFO]      Current evaluated best model on eval_dataset is epoch_2, miou=0.49307918548583984
+2022-06-15 18:32:05 [INFO]      Model saved in ./STANET_Paddle/test_tipc/result/stanet/epoch_6.
+ Run successfully with command - python3.7 ./STANET_Paddle/tutorials/train/stanet_train_bonesmall.py --data_dir=./STANET_Paddle/test_tipc/data/mini_levir_dataset   --out_dir=./STANET_Paddle/test_tipc/result/stanet/   --num_epoch=6 --save_epoch=2  --batch_size=2 !  
+[06-15 18:32:12 MainThread @logger.py:242] Argv: ./STANET_Paddle/tutorials/eval/stanet_eval_bone.py --data_dir=./STANET_Paddle/test_tipc/data/mini_levir_dataset --state_dict_path=./STANET_Paddle/test_tipc/result/stanet/best_model/model.pdparams
+[06-15 18:32:12 MainThread @utils.py:79] WRN paddlepaddle version: 2.3.0. The dynamic graph version of PARL is under development, not fully tested and supported
+2022-06-15 18:32:12,838-WARNING: type object 'QuantizationTransformPass' has no attribute '_supported_quantizable_op_type'
+2022-06-15 18:32:12,838-WARNING: If you want to use training-aware and post-training quantization, please use Paddle >= 1.8.4 or develop version
+------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+                                                                     Models supported by PaddleClas                                                                     
++-------------------+--------------------------------------------------------------------------------------------------------------------------------------------------+
+|       Series      |                                                                       Name                                                                       |
++-------------------+--------------------------------------------------------------------------------------------------------------------------------------------------+
+|      AlexNet      |                                                                     AlexNet                                                                      |
+|      DarkNet      |                                                                    DarkNet53                                                                     |
+|        DeiT       | DeiT_base_distilled_patch16_224  DeiT_base_distilled_patch16_384  DeiT_base_patch16_224  DeiT_base_patch16_384  DeiT_small_distilled_patch16_224 |
+|                   |                                  DeiT_small_patch16_224  DeiT_tiny_distilled_patch16_224  DeiT_tiny_patch16_224                                  |
+|      DenseNet     |                                         DenseNet121  DenseNet161  DenseNet169  DenseNet201  DenseNet264                                          |
+|        DLA        |                                    DLA46_c  DLA60x_c  DLA34  DLA60  DLA60x  DLA102  DLA102x  DLA102x2  DLA169                                    |
+|        DPN        |                                                       DPN68  DPN92  DPN98  DPN107  DPN131                                                        |
+|    EfficientNet   |       EfficientNetB0  EfficientNetB0_small  EfficientNetB1  EfficientNetB2  EfficientNetB3  EfficientNetB4  EfficientNetB5  EfficientNetB6       |
+|                   |                                                                  EfficientNetB7                                                                  |
+|       ESNet       |                                                 ESNet_x0_25  ESNet_x0_5  ESNet_x0_75  ESNet_x1_0                                                 |
+|      GhostNet     |                                         GhostNet_x0_5  GhostNet_x1_0  GhostNet_x1_3  GhostNet_x1_3_ssld                                          |
+|      HarDNet      |                                                 HarDNet39_ds  HarDNet68_ds  HarDNet68  HarDNet85                                                 |
+|       HRNet       |          HRNet_W18_C  HRNet_W30_C  HRNet_W32_C  HRNet_W40_C  HRNet_W44_C  HRNet_W48_C  HRNet_W64_C  HRNet_W18_C_ssld  HRNet_W48_C_ssld           |
+|     Inception     |                                                       GoogLeNet  InceptionV3  InceptionV4                                                        |
+|       MixNet      |                                                           MixNet_S  MixNet_M  MixNet_L                                                           |
+|    MobileNetV1    |                              MobileNetV1_x0_25  MobileNetV1_x0_5  MobileNetV1_x0_75  MobileNetV1  MobileNetV1_ssld                               |
+|    MobileNetV2    |            MobileNetV2_x0_25  MobileNetV2_x0_5  MobileNetV2_x0_75  MobileNetV2  MobileNetV2_x1_5  MobileNetV2_x2_0  MobileNetV2_ssld             |
+|    MobileNetV3    |            MobileNetV3_small_x0_35  MobileNetV3_small_x0_5  MobileNetV3_small_x0_75  MobileNetV3_small_x1_0  MobileNetV3_small_x1_25             |
+|                   |            MobileNetV3_large_x0_35  MobileNetV3_large_x0_5  MobileNetV3_large_x0_75  MobileNetV3_large_x1_0  MobileNetV3_large_x1_25             |
+|                   |                                             MobileNetV3_small_x1_0_ssld  MobileNetV3_large_x1_0_ssld                                             |
+|      PPLCNet      |                PPLCNet_x0_25  PPLCNet_x0_35  PPLCNet_x0_5  PPLCNet_x0_75  PPLCNet_x1_0  PPLCNet_x1_5  PPLCNet_x2_0  PPLCNet_x2_5                 |
+|       RedNet      |                                                RedNet26  RedNet38  RedNet50  RedNet101  RedNet152                                                |
+|       RegNet      |                                                                   RegNetX_4GF                                                                    |
+|      Res2Net      |          Res2Net50_14w_8s  Res2Net50_26w_4s  Res2Net50_vd_26w_4s  Res2Net200_vd_26w_4s  Res2Net101_vd_26w_4s  Res2Net50_vd_26w_4s_ssld           |
+|                   |                                               Res2Net101_vd_26w_4s_ssld  Res2Net200_vd_26w_4s_ssld                                               |
+|      ResNeSt      |                                                        ResNeSt50  ResNeSt50_fast_1s1x64d                                                         |
+|       ResNet      |       ResNet18  ResNet18_vd  ResNet34  ResNet34_vd  ResNet50  ResNet50_vc  ResNet50_vd  ResNet50_vd_v2  ResNet101  ResNet101_vd  ResNet152       |
+|                   |         ResNet152_vd  ResNet200_vd  ResNet34_vd_ssld  ResNet50_vd_ssld  ResNet50_vd_ssld_v2  ResNet101_vd_ssld  Fix_ResNet50_vd_ssld_v2          |
+|                   |                                                              ResNet50_ACNet_deploy                                                               |
+|      ResNeXt      |      ResNeXt50_32x4d  ResNeXt50_vd_32x4d  ResNeXt50_64x4d  ResNeXt50_vd_64x4d  ResNeXt101_32x4d  ResNeXt101_vd_32x4d  ResNeXt101_32x8d_wsl       |
+|                   |      ResNeXt101_32x16d_wsl  ResNeXt101_32x32d_wsl  ResNeXt101_32x48d_wsl  Fix_ResNeXt101_32x48d_wsl  ResNeXt101_64x4d  ResNeXt101_vd_64x4d       |
+|                   |                                   ResNeXt152_32x4d  ResNeXt152_vd_32x4d  ResNeXt152_64x4d  ResNeXt152_vd_64x4d                                   |
+|       ReXNet      |                                            ReXNet_1_0  ReXNet_1_3  ReXNet_1_5  ReXNet_2_0  ReXNet_3_0                                            |
+|       SENet       | SENet154_vd  SE_HRNet_W64_C_ssld  SE_ResNet18_vd  SE_ResNet34_vd  SE_ResNet50_vd  SE_ResNeXt50_32x4d  SE_ResNeXt50_vd_32x4d  SE_ResNeXt101_32x4d |
+|    ShuffleNetV2   |      ShuffleNetV2_swish  ShuffleNetV2_x0_25  ShuffleNetV2_x0_33  ShuffleNetV2_x0_5  ShuffleNetV2_x1_0  ShuffleNetV2_x1_5  ShuffleNetV2_x2_0      |
+|     SqueezeNet    |                                                           SqueezeNet1_0  SqueezeNet1_1                                                           |
+|  SwinTransformer  |                       SwinTransformer_large_patch4_window7_224_22kto1k  SwinTransformer_large_patch4_window12_384_22kto1k                        |
+|                   |   SwinTransformer_base_patch4_window7_224_22kto1k  SwinTransformer_base_patch4_window12_384_22kto1k  SwinTransformer_base_patch4_window12_384    |
+|                   |            SwinTransformer_base_patch4_window7_224  SwinTransformer_small_patch4_window7_224  SwinTransformer_tiny_patch4_window7_224            |
+|       Twins       |                                 pcpvt_small  pcpvt_base  pcpvt_large  alt_gvt_small  alt_gvt_base  alt_gvt_large                                 |
+|        VGG        |                                                            VGG11  VGG13  VGG16  VGG19                                                            |
+| VisionTransformer |      ViT_base_patch16_224  ViT_base_patch16_384  ViT_base_patch32_384  ViT_large_patch16_224  ViT_large_patch16_384  ViT_large_patch32_384       |
+|                   |                                                              ViT_small_patch16_224                                                               |
+|      Xception     |                                    Xception41  Xception41_deeplab  Xception65  Xception65_deeplab  Xception71                                    |
++-------------------+--------------------------------------------------------------------------------------------------------------------------------------------------+
+                                                                                                                                                Powered by PaddlePaddle!
+------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+2022-06-15 18:32:12 [INFO]      8 samples in file ./STANET_Paddle/test_tipc/data/mini_levir_dataset/val.txt
+W0615 18:32:12.947710  7110 gpu_context.cc:278] Please NOTE: device: 0, GPU Compute Capability: 8.0, Driver API Version: 11.2, Runtime API Version: 11.2
+W0615 18:32:12.950922  7110 gpu_context.cc:306] device: 0, cuDNN Version: 8.2.
+INFO 2022-06-15 18:32:15,346 logger.py:79] unique_endpoints {''}
+[2022/06/15 18:32:15] root INFO: unique_endpoints {''}
+INFO 2022-06-15 18:32:15,346 logger.py:79] Found /home/aistudio/.paddleclas/weights/ESNet_x1_0_pretrained.pdparams
+[2022/06/15 18:32:15] root INFO: Found /home/aistudio/.paddleclas/weights/ESNet_x1_0_pretrained.pdparams
+2022-06-15 18:32:15 [INFO]      Loading pretrained model from ./STANET_Paddle/test_tipc/result/stanet/best_model/model.pdparams
+2022-06-15 18:32:15 [INFO]      There are 393/393 variables loaded into STANet.
+2022-06-15 18:32:15 [INFO]      Start to evaluate(total_samples=8, total_steps=8)...
+OrderedDict([('miou', 0.49307918548583984), ('category_iou', array([0.98615837, 0.        ])), ('oacc', 0.9861583709716797), ('category_acc', array([0.98615837, 0.        ])), ('kappa', 0.0), ('category_F1-score', array([0.99303095, 0.        ]))])
+ Run successfully with command - python3.7  ./STANET_Paddle/tutorials/eval/stanet_eval_bone.py --data_dir=./STANET_Paddle/test_tipc/data/mini_levir_dataset    --state_dict_path=./STANET_Paddle/test_tipc/result/stanet/best_model/model.pdparams !  
+[06-15 18:32:24 MainThread @logger.py:242] Argv: ./STANET_Paddle/deploy/export/stanet_export_bone.py --state_dict_path=./STANET_Paddle/test_tipc/result/stanet/best_model/model.pdparams --save_dir=./STANET_Paddle/test_tipc/result/inference_model/ --fixed_input_shape=[1,3,256,256]
+[06-15 18:32:24 MainThread @utils.py:79] WRN paddlepaddle version: 2.3.0. The dynamic graph version of PARL is under development, not fully tested and supported
+2022-06-15 18:32:24,681-WARNING: type object 'QuantizationTransformPass' has no attribute '_supported_quantizable_op_type'
+2022-06-15 18:32:24,681-WARNING: If you want to use training-aware and post-training quantization, please use Paddle >= 1.8.4 or develop version
+------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+                                                                     Models supported by PaddleClas                                                                     
++-------------------+--------------------------------------------------------------------------------------------------------------------------------------------------+
+|       Series      |                                                                       Name                                                                       |
++-------------------+--------------------------------------------------------------------------------------------------------------------------------------------------+
+|      AlexNet      |                                                                     AlexNet                                                                      |
+|      DarkNet      |                                                                    DarkNet53                                                                     |
+|        DeiT       | DeiT_base_distilled_patch16_224  DeiT_base_distilled_patch16_384  DeiT_base_patch16_224  DeiT_base_patch16_384  DeiT_small_distilled_patch16_224 |
+|                   |                                  DeiT_small_patch16_224  DeiT_tiny_distilled_patch16_224  DeiT_tiny_patch16_224                                  |
+|      DenseNet     |                                         DenseNet121  DenseNet161  DenseNet169  DenseNet201  DenseNet264                                          |
+|        DLA        |                                    DLA46_c  DLA60x_c  DLA34  DLA60  DLA60x  DLA102  DLA102x  DLA102x2  DLA169                                    |
+|        DPN        |                                                       DPN68  DPN92  DPN98  DPN107  DPN131                                                        |
+|    EfficientNet   |       EfficientNetB0  EfficientNetB0_small  EfficientNetB1  EfficientNetB2  EfficientNetB3  EfficientNetB4  EfficientNetB5  EfficientNetB6       |
+|                   |                                                                  EfficientNetB7                                                                  |
+|       ESNet       |                                                 ESNet_x0_25  ESNet_x0_5  ESNet_x0_75  ESNet_x1_0                                                 |
+|      GhostNet     |                                         GhostNet_x0_5  GhostNet_x1_0  GhostNet_x1_3  GhostNet_x1_3_ssld                                          |
+|      HarDNet      |                                                 HarDNet39_ds  HarDNet68_ds  HarDNet68  HarDNet85                                                 |
+|       HRNet       |          HRNet_W18_C  HRNet_W30_C  HRNet_W32_C  HRNet_W40_C  HRNet_W44_C  HRNet_W48_C  HRNet_W64_C  HRNet_W18_C_ssld  HRNet_W48_C_ssld           |
+|     Inception     |                                                       GoogLeNet  InceptionV3  InceptionV4                                                        |
+|       MixNet      |                                                           MixNet_S  MixNet_M  MixNet_L                                                           |
+|    MobileNetV1    |                              MobileNetV1_x0_25  MobileNetV1_x0_5  MobileNetV1_x0_75  MobileNetV1  MobileNetV1_ssld                               |
+|    MobileNetV2    |            MobileNetV2_x0_25  MobileNetV2_x0_5  MobileNetV2_x0_75  MobileNetV2  MobileNetV2_x1_5  MobileNetV2_x2_0  MobileNetV2_ssld             |
+|    MobileNetV3    |            MobileNetV3_small_x0_35  MobileNetV3_small_x0_5  MobileNetV3_small_x0_75  MobileNetV3_small_x1_0  MobileNetV3_small_x1_25             |
+|                   |            MobileNetV3_large_x0_35  MobileNetV3_large_x0_5  MobileNetV3_large_x0_75  MobileNetV3_large_x1_0  MobileNetV3_large_x1_25             |
+|                   |                                             MobileNetV3_small_x1_0_ssld  MobileNetV3_large_x1_0_ssld                                             |
+|      PPLCNet      |                PPLCNet_x0_25  PPLCNet_x0_35  PPLCNet_x0_5  PPLCNet_x0_75  PPLCNet_x1_0  PPLCNet_x1_5  PPLCNet_x2_0  PPLCNet_x2_5                 |
+|       RedNet      |                                                RedNet26  RedNet38  RedNet50  RedNet101  RedNet152                                                |
+|       RegNet      |                                                                   RegNetX_4GF                                                                    |
+|      Res2Net      |          Res2Net50_14w_8s  Res2Net50_26w_4s  Res2Net50_vd_26w_4s  Res2Net200_vd_26w_4s  Res2Net101_vd_26w_4s  Res2Net50_vd_26w_4s_ssld           |
+|                   |                                               Res2Net101_vd_26w_4s_ssld  Res2Net200_vd_26w_4s_ssld                                               |
+|      ResNeSt      |                                                        ResNeSt50  ResNeSt50_fast_1s1x64d                                                         |
+|       ResNet      |       ResNet18  ResNet18_vd  ResNet34  ResNet34_vd  ResNet50  ResNet50_vc  ResNet50_vd  ResNet50_vd_v2  ResNet101  ResNet101_vd  ResNet152       |
+|                   |         ResNet152_vd  ResNet200_vd  ResNet34_vd_ssld  ResNet50_vd_ssld  ResNet50_vd_ssld_v2  ResNet101_vd_ssld  Fix_ResNet50_vd_ssld_v2          |
+|                   |                                                              ResNet50_ACNet_deploy                                                               |
+|      ResNeXt      |      ResNeXt50_32x4d  ResNeXt50_vd_32x4d  ResNeXt50_64x4d  ResNeXt50_vd_64x4d  ResNeXt101_32x4d  ResNeXt101_vd_32x4d  ResNeXt101_32x8d_wsl       |
+|                   |      ResNeXt101_32x16d_wsl  ResNeXt101_32x32d_wsl  ResNeXt101_32x48d_wsl  Fix_ResNeXt101_32x48d_wsl  ResNeXt101_64x4d  ResNeXt101_vd_64x4d       |
+|                   |                                   ResNeXt152_32x4d  ResNeXt152_vd_32x4d  ResNeXt152_64x4d  ResNeXt152_vd_64x4d                                   |
+|       ReXNet      |                                            ReXNet_1_0  ReXNet_1_3  ReXNet_1_5  ReXNet_2_0  ReXNet_3_0                                            |
+|       SENet       | SENet154_vd  SE_HRNet_W64_C_ssld  SE_ResNet18_vd  SE_ResNet34_vd  SE_ResNet50_vd  SE_ResNeXt50_32x4d  SE_ResNeXt50_vd_32x4d  SE_ResNeXt101_32x4d |
+|    ShuffleNetV2   |      ShuffleNetV2_swish  ShuffleNetV2_x0_25  ShuffleNetV2_x0_33  ShuffleNetV2_x0_5  ShuffleNetV2_x1_0  ShuffleNetV2_x1_5  ShuffleNetV2_x2_0      |
+|     SqueezeNet    |                                                           SqueezeNet1_0  SqueezeNet1_1                                                           |
+|  SwinTransformer  |                       SwinTransformer_large_patch4_window7_224_22kto1k  SwinTransformer_large_patch4_window12_384_22kto1k                        |
+|                   |   SwinTransformer_base_patch4_window7_224_22kto1k  SwinTransformer_base_patch4_window12_384_22kto1k  SwinTransformer_base_patch4_window12_384    |
+|                   |            SwinTransformer_base_patch4_window7_224  SwinTransformer_small_patch4_window7_224  SwinTransformer_tiny_patch4_window7_224            |
+|       Twins       |                                 pcpvt_small  pcpvt_base  pcpvt_large  alt_gvt_small  alt_gvt_base  alt_gvt_large                                 |
+|        VGG        |                                                            VGG11  VGG13  VGG16  VGG19                                                            |
+| VisionTransformer |      ViT_base_patch16_224  ViT_base_patch16_384  ViT_base_patch32_384  ViT_large_patch16_224  ViT_large_patch16_384  ViT_large_patch32_384       |
+|                   |                                                              ViT_small_patch16_224                                                               |
+|      Xception     |                                    Xception41  Xception41_deeplab  Xception65  Xception65_deeplab  Xception71                                    |
++-------------------+--------------------------------------------------------------------------------------------------------------------------------------------------+
+                                                                                                                                                Powered by PaddlePaddle!
+------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+W0615 18:32:24.788726  7290 gpu_context.cc:278] Please NOTE: device: 0, GPU Compute Capability: 8.0, Driver API Version: 11.2, Runtime API Version: 11.2
+W0615 18:32:24.791882  7290 gpu_context.cc:306] device: 0, cuDNN Version: 8.2.
+INFO 2022-06-15 18:32:27,175 logger.py:79] unique_endpoints {''}
+[2022/06/15 18:32:27] root INFO: unique_endpoints {''}
+INFO 2022-06-15 18:32:27,176 logger.py:79] Found /home/aistudio/.paddleclas/weights/ESNet_x1_0_pretrained.pdparams
+[2022/06/15 18:32:27] root INFO: Found /home/aistudio/.paddleclas/weights/ESNet_x1_0_pretrained.pdparams
+2022-06-15 18:32:27 [INFO]      Loading pretrained model from ./STANET_Paddle/test_tipc/result/stanet/best_model/model.pdparams
+2022-06-15 18:32:27 [INFO]      There are 393/393 variables loaded into STANet.
+2022-06-15 18:32:32 [INFO]      The model for the inference deployment is saved in ./STANET_Paddle/test_tipc/result/inference_model/.
+ Run successfully with command - python3.7  ./STANET_Paddle/deploy/export/stanet_export_bone.py     --state_dict_path=./STANET_Paddle/test_tipc/result/stanet/best_model/model.pdparams   --save_dir=./STANET_Paddle/test_tipc/result/inference_model/  --fixed_input_shape=[1,3,256,256]     !  
+[06-15 18:32:39 MainThread @logger.py:242] Argv: ./STANET_Paddle/tutorials/infer/stanet_infer.py --infer_dir=./STANET_Paddle/test_tipc/result/inference_model/ --img_dir=./STANET_Paddle/test_tipc/data/mini_levir_dataset --output_dir=./STANET_Paddle/test_tipc/result/predict_output --use_gpu=True --precision=fp32 --enable_benchmark=True --use_tensorrt=False
+[06-15 18:32:39 MainThread @utils.py:79] WRN paddlepaddle version: 2.3.0. The dynamic graph version of PARL is under development, not fully tested and supported
+2022-06-15 18:32:39,611-WARNING: type object 'QuantizationTransformPass' has no attribute '_supported_quantizable_op_type'
+2022-06-15 18:32:39,611-WARNING: If you want to use training-aware and post-training quantization, please use Paddle >= 1.8.4 or develop version
+----------------------------------------------------------------------------------------------------------------------------
+                                               Models supported by PaddleClas                                               
++-------------------+------------------------------------------------------------------------------------------------------+
+|       Series      |                                                 Name                                                 |
++-------------------+------------------------------------------------------------------------------------------------------+
+|      AlexNet      |                                               AlexNet                                                |
+|      DarkNet      |                                              DarkNet53                                               |
+|        DeiT       |       DeiT_base_distilled_patch16_224  DeiT_base_distilled_patch16_384  DeiT_base_patch16_224        |
+|                   |           DeiT_base_patch16_384  DeiT_small_distilled_patch16_224  DeiT_small_patch16_224            |
+|                   |                        DeiT_tiny_distilled_patch16_224  DeiT_tiny_patch16_224                        |
+|      DenseNet     |                   DenseNet121  DenseNet161  DenseNet169  DenseNet201  DenseNet264                    |
+|        DLA        |              DLA46_c  DLA60x_c  DLA34  DLA60  DLA60x  DLA102  DLA102x  DLA102x2  DLA169              |
+|        DPN        |                                 DPN68  DPN92  DPN98  DPN107  DPN131                                  |
+|    EfficientNet   | EfficientNetB0  EfficientNetB0_small  EfficientNetB1  EfficientNetB2  EfficientNetB3  EfficientNetB4 |
+|                   |                            EfficientNetB5  EfficientNetB6  EfficientNetB7                            |
+|       ESNet       |                           ESNet_x0_25  ESNet_x0_5  ESNet_x0_75  ESNet_x1_0                           |
+|      GhostNet     |                   GhostNet_x0_5  GhostNet_x1_0  GhostNet_x1_3  GhostNet_x1_3_ssld                    |
+|      HarDNet      |                           HarDNet39_ds  HarDNet68_ds  HarDNet68  HarDNet85                           |
+|       HRNet       |      HRNet_W18_C  HRNet_W30_C  HRNet_W32_C  HRNet_W40_C  HRNet_W44_C  HRNet_W48_C  HRNet_W64_C       |
+|                   |                                  HRNet_W18_C_ssld  HRNet_W48_C_ssld                                  |
+|     Inception     |                                 GoogLeNet  InceptionV3  InceptionV4                                  |
+|       MixNet      |                                     MixNet_S  MixNet_M  MixNet_L                                     |
+|    MobileNetV1    |        MobileNetV1_x0_25  MobileNetV1_x0_5  MobileNetV1_x0_75  MobileNetV1  MobileNetV1_ssld         |
+|    MobileNetV2    |        MobileNetV2_x0_25  MobileNetV2_x0_5  MobileNetV2_x0_75  MobileNetV2  MobileNetV2_x1_5         |
+|                   |                                  MobileNetV2_x2_0  MobileNetV2_ssld                                  |
+|    MobileNetV3    |   MobileNetV3_small_x0_35  MobileNetV3_small_x0_5  MobileNetV3_small_x0_75  MobileNetV3_small_x1_0   |
+|                   |  MobileNetV3_small_x1_25  MobileNetV3_large_x0_35  MobileNetV3_large_x0_5  MobileNetV3_large_x0_75   |
+|                   |             MobileNetV3_large_x1_0  MobileNetV3_large_x1_25  MobileNetV3_small_x1_0_ssld             |
+|                   |                                     MobileNetV3_large_x1_0_ssld                                      |
+|      PPLCNet      | PPLCNet_x0_25  PPLCNet_x0_35  PPLCNet_x0_5  PPLCNet_x0_75  PPLCNet_x1_0  PPLCNet_x1_5  PPLCNet_x2_0  |
+|                   |                                             PPLCNet_x2_5                                             |
+|       RedNet      |                          RedNet26  RedNet38  RedNet50  RedNet101  RedNet152                          |
+|       RegNet      |                                             RegNetX_4GF                                              |
+|      Res2Net      | Res2Net50_14w_8s  Res2Net50_26w_4s  Res2Net50_vd_26w_4s  Res2Net200_vd_26w_4s  Res2Net101_vd_26w_4s  |
+|                   |            Res2Net50_vd_26w_4s_ssld  Res2Net101_vd_26w_4s_ssld  Res2Net200_vd_26w_4s_ssld            |
+|      ResNeSt      |                                  ResNeSt50  ResNeSt50_fast_1s1x64d                                   |
+|       ResNet      |   ResNet18  ResNet18_vd  ResNet34  ResNet34_vd  ResNet50  ResNet50_vc  ResNet50_vd  ResNet50_vd_v2   |
+|                   |  ResNet101  ResNet101_vd  ResNet152  ResNet152_vd  ResNet200_vd  ResNet34_vd_ssld  ResNet50_vd_ssld  |
+|                   |        ResNet50_vd_ssld_v2  ResNet101_vd_ssld  Fix_ResNet50_vd_ssld_v2  ResNet50_ACNet_deploy        |
+|      ResNeXt      |      ResNeXt50_32x4d  ResNeXt50_vd_32x4d  ResNeXt50_64x4d  ResNeXt50_vd_64x4d  ResNeXt101_32x4d      |
+|                   |       ResNeXt101_vd_32x4d  ResNeXt101_32x8d_wsl  ResNeXt101_32x16d_wsl  ResNeXt101_32x32d_wsl        |
+|                   |       ResNeXt101_32x48d_wsl  Fix_ResNeXt101_32x48d_wsl  ResNeXt101_64x4d  ResNeXt101_vd_64x4d        |
+|                   |             ResNeXt152_32x4d  ResNeXt152_vd_32x4d  ResNeXt152_64x4d  ResNeXt152_vd_64x4d             |
+|       ReXNet      |                      ReXNet_1_0  ReXNet_1_3  ReXNet_1_5  ReXNet_2_0  ReXNet_3_0                      |
+|       SENet       | SENet154_vd  SE_HRNet_W64_C_ssld  SE_ResNet18_vd  SE_ResNet34_vd  SE_ResNet50_vd  SE_ResNeXt50_32x4d |
+|                   |                              SE_ResNeXt50_vd_32x4d  SE_ResNeXt101_32x4d                              |
+|    ShuffleNetV2   |   ShuffleNetV2_swish  ShuffleNetV2_x0_25  ShuffleNetV2_x0_33  ShuffleNetV2_x0_5  ShuffleNetV2_x1_0   |
+|                   |                                 ShuffleNetV2_x1_5  ShuffleNetV2_x2_0                                 |
+|     SqueezeNet    |                                     SqueezeNet1_0  SqueezeNet1_1                                     |
+|  SwinTransformer  | SwinTransformer_large_patch4_window7_224_22kto1k  SwinTransformer_large_patch4_window12_384_22kto1k  |
+|                   |  SwinTransformer_base_patch4_window7_224_22kto1k  SwinTransformer_base_patch4_window12_384_22kto1k   |
+|                   |          SwinTransformer_base_patch4_window12_384  SwinTransformer_base_patch4_window7_224           |
+|                   |          SwinTransformer_small_patch4_window7_224  SwinTransformer_tiny_patch4_window7_224           |
+|       Twins       |           pcpvt_small  pcpvt_base  pcpvt_large  alt_gvt_small  alt_gvt_base  alt_gvt_large           |
+|        VGG        |                                      VGG11  VGG13  VGG16  VGG19                                      |
+| VisionTransformer |       ViT_base_patch16_224  ViT_base_patch16_384  ViT_base_patch32_384  ViT_large_patch16_224        |
+|                   |                 ViT_large_patch16_384  ViT_large_patch32_384  ViT_small_patch16_224                  |
+|      Xception     |              Xception41  Xception41_deeplab  Xception65  Xception65_deeplab  Xception71              |
++-------------------+------------------------------------------------------------------------------------------------------+
+                                                                                                    Powered by PaddlePaddle!
+----------------------------------------------------------------------------------------------------------------------------
+2022-06-15 18:32:39 [INFO]      Model[STANet] loaded.
+total file number is 16
+------------------ Inference Time Info ----------------------
+total_time(ms): 3240.7, img_num: 1, batch_size: 1
+average latency time(ms): 3240.70, QPS: 0.308575
+preprocess_time_per_im(ms): 8.90, inference_time_per_batch(ms): 3231.50, postprocess_time_per_im(ms): 0.30
+------------------ Inference Time Info ----------------------
+total_time(ms): 54.199999999999996, img_num: 1, batch_size: 1
+average latency time(ms): 54.20, QPS: 18.450185
+preprocess_time_per_im(ms): 8.80, inference_time_per_batch(ms): 45.20, postprocess_time_per_im(ms): 0.20
+------------------ Inference Time Info ----------------------
+total_time(ms): 58.9, img_num: 1, batch_size: 1
+average latency time(ms): 58.90, QPS: 16.977929
+preprocess_time_per_im(ms): 8.00, inference_time_per_batch(ms): 50.70, postprocess_time_per_im(ms): 0.20
+------------------ Inference Time Info ----------------------
+total_time(ms): 53.3, img_num: 1, batch_size: 1
+average latency time(ms): 53.30, QPS: 18.761726
+preprocess_time_per_im(ms): 8.40, inference_time_per_batch(ms): 44.80, postprocess_time_per_im(ms): 0.10
+------------------ Inference Time Info ----------------------
+total_time(ms): 52.3, img_num: 1, batch_size: 1
+average latency time(ms): 52.30, QPS: 19.120459
+preprocess_time_per_im(ms): 7.90, inference_time_per_batch(ms): 44.30, postprocess_time_per_im(ms): 0.10
+------------------ Inference Time Info ----------------------
+total_time(ms): 52.5, img_num: 1, batch_size: 1
+average latency time(ms): 52.50, QPS: 19.047619
+preprocess_time_per_im(ms): 8.10, inference_time_per_batch(ms): 44.30, postprocess_time_per_im(ms): 0.10
+------------------ Inference Time Info ----------------------
+total_time(ms): 52.3, img_num: 1, batch_size: 1
+average latency time(ms): 52.30, QPS: 19.120459
+preprocess_time_per_im(ms): 7.90, inference_time_per_batch(ms): 44.30, postprocess_time_per_im(ms): 0.10
+------------------ Inference Time Info ----------------------
+total_time(ms): 52.3, img_num: 1, batch_size: 1
+average latency time(ms): 52.30, QPS: 19.120459
+preprocess_time_per_im(ms): 8.00, inference_time_per_batch(ms): 44.20, postprocess_time_per_im(ms): 0.10
+------------------ Inference Time Info ----------------------
+total_time(ms): 52.2, img_num: 1, batch_size: 1
+average latency time(ms): 52.20, QPS: 19.157088
+preprocess_time_per_im(ms): 8.00, inference_time_per_batch(ms): 44.10, postprocess_time_per_im(ms): 0.10
+------------------ Inference Time Info ----------------------
+total_time(ms): 51.9, img_num: 1, batch_size: 1
+average latency time(ms): 51.90, QPS: 19.267823
+preprocess_time_per_im(ms): 7.70, inference_time_per_batch(ms): 44.10, postprocess_time_per_im(ms): 0.10
+------------------ Inference Time Info ----------------------
+total_time(ms): 52.3, img_num: 1, batch_size: 1
+average latency time(ms): 52.30, QPS: 19.120459
+preprocess_time_per_im(ms): 8.00, inference_time_per_batch(ms): 44.20, postprocess_time_per_im(ms): 0.10
+------------------ Inference Time Info ----------------------
+total_time(ms): 52.2, img_num: 1, batch_size: 1
+average latency time(ms): 52.20, QPS: 19.157088
+preprocess_time_per_im(ms): 7.80, inference_time_per_batch(ms): 44.20, postprocess_time_per_im(ms): 0.20
+------------------ Inference Time Info ----------------------
+total_time(ms): 52.3, img_num: 1, batch_size: 1
+average latency time(ms): 52.30, QPS: 19.120459
+preprocess_time_per_im(ms): 8.00, inference_time_per_batch(ms): 44.20, postprocess_time_per_im(ms): 0.10
+------------------ Inference Time Info ----------------------
+total_time(ms): 52.1, img_num: 1, batch_size: 1
+average latency time(ms): 52.10, QPS: 19.193858
+preprocess_time_per_im(ms): 8.00, inference_time_per_batch(ms): 44.00, postprocess_time_per_im(ms): 0.10
+------------------ Inference Time Info ----------------------
+total_time(ms): 52.1, img_num: 1, batch_size: 1
+average latency time(ms): 52.10, QPS: 19.193858
+preprocess_time_per_im(ms): 7.80, inference_time_per_batch(ms): 44.20, postprocess_time_per_im(ms): 0.10
+------------------ Inference Time Info ----------------------
+total_time(ms): 52.400000000000006, img_num: 1, batch_size: 1
+average latency time(ms): 52.40, QPS: 19.083969
+preprocess_time_per_im(ms): 8.00, inference_time_per_batch(ms): 44.20, postprocess_time_per_im(ms): 0.20
+ Run successfully with command - python3.7  ./STANET_Paddle/tutorials/infer/stanet_infer.py   --infer_dir=./STANET_Paddle/test_tipc/result/inference_model/ --img_dir=./STANET_Paddle/test_tipc/data/mini_levir_dataset --output_dir=./STANET_Paddle/test_tipc/result/predict_output --use_gpu=True --precision=fp32   --enable_benchmark=True --use_tensorrt=False      > ./test_tipc/output/STANET/python_infer_gpu_usetrt_fp32_precision_null_batchsize_False.log 2>&1 !  
+[06-15 18:32:50 MainThread @logger.py:242] Argv: ./STANET_Paddle/tutorials/infer/stanet_infer.py --infer_dir=./STANET_Paddle/test_tipc/result/inference_model/ --img_dir=./STANET_Paddle/test_tipc/data/mini_levir_dataset --output_dir=./STANET_Paddle/test_tipc/result/predict_output --use_gpu=False --enable_mkldnn=False --cpu_threads=1 --enable_benchmark=True --use_tensorrt=False
+[06-15 18:32:50 MainThread @utils.py:79] WRN paddlepaddle version: 2.3.0. The dynamic graph version of PARL is under development, not fully tested and supported
+2022-06-15 18:32:50,416-WARNING: type object 'QuantizationTransformPass' has no attribute '_supported_quantizable_op_type'
+2022-06-15 18:32:50,416-WARNING: If you want to use training-aware and post-training quantization, please use Paddle >= 1.8.4 or develop version
+----------------------------------------------------------------------------------------------------------------------------
+                                               Models supported by PaddleClas                                               
++-------------------+------------------------------------------------------------------------------------------------------+
+|       Series      |                                                 Name                                                 |
++-------------------+------------------------------------------------------------------------------------------------------+
+|      AlexNet      |                                               AlexNet                                                |
+|      DarkNet      |                                              DarkNet53                                               |
+|        DeiT       |       DeiT_base_distilled_patch16_224  DeiT_base_distilled_patch16_384  DeiT_base_patch16_224        |
+|                   |           DeiT_base_patch16_384  DeiT_small_distilled_patch16_224  DeiT_small_patch16_224            |
+|                   |                        DeiT_tiny_distilled_patch16_224  DeiT_tiny_patch16_224                        |
+|      DenseNet     |                   DenseNet121  DenseNet161  DenseNet169  DenseNet201  DenseNet264                    |
+|        DLA        |              DLA46_c  DLA60x_c  DLA34  DLA60  DLA60x  DLA102  DLA102x  DLA102x2  DLA169              |
+|        DPN        |                                 DPN68  DPN92  DPN98  DPN107  DPN131                                  |
+|    EfficientNet   | EfficientNetB0  EfficientNetB0_small  EfficientNetB1  EfficientNetB2  EfficientNetB3  EfficientNetB4 |
+|                   |                            EfficientNetB5  EfficientNetB6  EfficientNetB7                            |
+|       ESNet       |                           ESNet_x0_25  ESNet_x0_5  ESNet_x0_75  ESNet_x1_0                           |
+|      GhostNet     |                   GhostNet_x0_5  GhostNet_x1_0  GhostNet_x1_3  GhostNet_x1_3_ssld                    |
+|      HarDNet      |                           HarDNet39_ds  HarDNet68_ds  HarDNet68  HarDNet85                           |
+|       HRNet       |      HRNet_W18_C  HRNet_W30_C  HRNet_W32_C  HRNet_W40_C  HRNet_W44_C  HRNet_W48_C  HRNet_W64_C       |
+|                   |                                  HRNet_W18_C_ssld  HRNet_W48_C_ssld                                  |
+|     Inception     |                                 GoogLeNet  InceptionV3  InceptionV4                                  |
+|       MixNet      |                                     MixNet_S  MixNet_M  MixNet_L                                     |
+|    MobileNetV1    |        MobileNetV1_x0_25  MobileNetV1_x0_5  MobileNetV1_x0_75  MobileNetV1  MobileNetV1_ssld         |
+|    MobileNetV2    |        MobileNetV2_x0_25  MobileNetV2_x0_5  MobileNetV2_x0_75  MobileNetV2  MobileNetV2_x1_5         |
+|                   |                                  MobileNetV2_x2_0  MobileNetV2_ssld                                  |
+|    MobileNetV3    |   MobileNetV3_small_x0_35  MobileNetV3_small_x0_5  MobileNetV3_small_x0_75  MobileNetV3_small_x1_0   |
+|                   |  MobileNetV3_small_x1_25  MobileNetV3_large_x0_35  MobileNetV3_large_x0_5  MobileNetV3_large_x0_75   |
+|                   |             MobileNetV3_large_x1_0  MobileNetV3_large_x1_25  MobileNetV3_small_x1_0_ssld             |
+|                   |                                     MobileNetV3_large_x1_0_ssld                                      |
+|      PPLCNet      | PPLCNet_x0_25  PPLCNet_x0_35  PPLCNet_x0_5  PPLCNet_x0_75  PPLCNet_x1_0  PPLCNet_x1_5  PPLCNet_x2_0  |
+|                   |                                             PPLCNet_x2_5                                             |
+|       RedNet      |                          RedNet26  RedNet38  RedNet50  RedNet101  RedNet152                          |
+|       RegNet      |                                             RegNetX_4GF                                              |
+|      Res2Net      | Res2Net50_14w_8s  Res2Net50_26w_4s  Res2Net50_vd_26w_4s  Res2Net200_vd_26w_4s  Res2Net101_vd_26w_4s  |
+|                   |            Res2Net50_vd_26w_4s_ssld  Res2Net101_vd_26w_4s_ssld  Res2Net200_vd_26w_4s_ssld            |
+|      ResNeSt      |                                  ResNeSt50  ResNeSt50_fast_1s1x64d                                   |
+|       ResNet      |   ResNet18  ResNet18_vd  ResNet34  ResNet34_vd  ResNet50  ResNet50_vc  ResNet50_vd  ResNet50_vd_v2   |
+|                   |  ResNet101  ResNet101_vd  ResNet152  ResNet152_vd  ResNet200_vd  ResNet34_vd_ssld  ResNet50_vd_ssld  |
+|                   |        ResNet50_vd_ssld_v2  ResNet101_vd_ssld  Fix_ResNet50_vd_ssld_v2  ResNet50_ACNet_deploy        |
+|      ResNeXt      |      ResNeXt50_32x4d  ResNeXt50_vd_32x4d  ResNeXt50_64x4d  ResNeXt50_vd_64x4d  ResNeXt101_32x4d      |
+|                   |       ResNeXt101_vd_32x4d  ResNeXt101_32x8d_wsl  ResNeXt101_32x16d_wsl  ResNeXt101_32x32d_wsl        |
+|                   |       ResNeXt101_32x48d_wsl  Fix_ResNeXt101_32x48d_wsl  ResNeXt101_64x4d  ResNeXt101_vd_64x4d        |
+|                   |             ResNeXt152_32x4d  ResNeXt152_vd_32x4d  ResNeXt152_64x4d  ResNeXt152_vd_64x4d             |
+|       ReXNet      |                      ReXNet_1_0  ReXNet_1_3  ReXNet_1_5  ReXNet_2_0  ReXNet_3_0                      |
+|       SENet       | SENet154_vd  SE_HRNet_W64_C_ssld  SE_ResNet18_vd  SE_ResNet34_vd  SE_ResNet50_vd  SE_ResNeXt50_32x4d |
+|                   |                              SE_ResNeXt50_vd_32x4d  SE_ResNeXt101_32x4d                              |
+|    ShuffleNetV2   |   ShuffleNetV2_swish  ShuffleNetV2_x0_25  ShuffleNetV2_x0_33  ShuffleNetV2_x0_5  ShuffleNetV2_x1_0   |
+|                   |                                 ShuffleNetV2_x1_5  ShuffleNetV2_x2_0                                 |
+|     SqueezeNet    |                                     SqueezeNet1_0  SqueezeNet1_1                                     |
+|  SwinTransformer  | SwinTransformer_large_patch4_window7_224_22kto1k  SwinTransformer_large_patch4_window12_384_22kto1k  |
+|                   |  SwinTransformer_base_patch4_window7_224_22kto1k  SwinTransformer_base_patch4_window12_384_22kto1k   |
+|                   |          SwinTransformer_base_patch4_window12_384  SwinTransformer_base_patch4_window7_224           |
+|                   |          SwinTransformer_small_patch4_window7_224  SwinTransformer_tiny_patch4_window7_224           |
+|       Twins       |           pcpvt_small  pcpvt_base  pcpvt_large  alt_gvt_small  alt_gvt_base  alt_gvt_large           |
+|        VGG        |                                      VGG11  VGG13  VGG16  VGG19                                      |
+| VisionTransformer |       ViT_base_patch16_224  ViT_base_patch16_384  ViT_base_patch32_384  ViT_large_patch16_224        |
+|                   |                 ViT_large_patch16_384  ViT_large_patch32_384  ViT_small_patch16_224                  |
+|      Xception     |              Xception41  Xception41_deeplab  Xception65  Xception65_deeplab  Xception71              |
++-------------------+------------------------------------------------------------------------------------------------------+
+                                                                                                    Powered by PaddlePaddle!
+----------------------------------------------------------------------------------------------------------------------------
+2022-06-15 18:32:50 [INFO]      Model[STANet] loaded.
+---    fused 0 elementwise_add with relu activation
+---    fused 0 elementwise_add with tanh activation
+---    fused 0 elementwise_add with leaky_relu activation
+---    fused 0 elementwise_add with swish activation
+---    fused 0 elementwise_add with hardswish activation
+---    fused 0 elementwise_add with sqrt activation
+---    fused 0 elementwise_add with abs activation
+---    fused 0 elementwise_add with clip activation
+---    fused 0 elementwise_add with gelu activation
+---    fused 0 elementwise_add with relu6 activation
+---    fused 0 elementwise_add with sigmoid activation
+---    fused 0 elementwise_sub with relu activation
+---    fused 0 elementwise_sub with tanh activation
+---    fused 0 elementwise_sub with leaky_relu activation
+---    fused 0 elementwise_sub with swish activation
+---    fused 0 elementwise_sub with hardswish activation
+---    fused 0 elementwise_sub with sqrt activation
+---    fused 1 elementwise_sub with abs activation
+---    fused 0 elementwise_sub with clip activation
+---    fused 0 elementwise_sub with gelu activation
+---    fused 0 elementwise_sub with relu6 activation
+---    fused 0 elementwise_sub with sigmoid activation
+---    fused 0 elementwise_mul with relu activation
+---    fused 0 elementwise_mul with tanh activation
+---    fused 0 elementwise_mul with leaky_relu activation
+---    fused 0 elementwise_mul with swish activation
+---    fused 0 elementwise_mul with hardswish activation
+---    fused 0 elementwise_mul with sqrt activation
+---    fused 0 elementwise_mul with abs activation
+---    fused 0 elementwise_mul with clip activation
+---    fused 0 elementwise_mul with gelu activation
+---    fused 0 elementwise_mul with relu6 activation
+---    fused 0 elementwise_mul with sigmoid activation
+total file number is 16
+------------------ Inference Time Info ----------------------
+total_time(ms): 981.1, img_num: 1, batch_size: 1
+average latency time(ms): 981.10, QPS: 1.019264
+preprocess_time_per_im(ms): 8.90, inference_time_per_batch(ms): 971.70, postprocess_time_per_im(ms): 0.50
+------------------ Inference Time Info ----------------------
+total_time(ms): 677.2, img_num: 1, batch_size: 1
+average latency time(ms): 677.20, QPS: 1.476669
+preprocess_time_per_im(ms): 9.00, inference_time_per_batch(ms): 667.70, postprocess_time_per_im(ms): 0.50
+------------------ Inference Time Info ----------------------
+total_time(ms): 1377.0, img_num: 1, batch_size: 1
+average latency time(ms): 1377.00, QPS: 0.726216
+preprocess_time_per_im(ms): 9.40, inference_time_per_batch(ms): 1367.20, postprocess_time_per_im(ms): 0.40
+------------------ Inference Time Info ----------------------
+total_time(ms): 1015.9, img_num: 1, batch_size: 1
+average latency time(ms): 1015.90, QPS: 0.984349
+preprocess_time_per_im(ms): 9.40, inference_time_per_batch(ms): 1006.20, postprocess_time_per_im(ms): 0.30
+------------------ Inference Time Info ----------------------
+total_time(ms): 756.1, img_num: 1, batch_size: 1
+average latency time(ms): 756.10, QPS: 1.322576
+preprocess_time_per_im(ms): 9.00, inference_time_per_batch(ms): 746.70, postprocess_time_per_im(ms): 0.40
+------------------ Inference Time Info ----------------------
+total_time(ms): 747.4, img_num: 1, batch_size: 1
+average latency time(ms): 747.40, QPS: 1.337972
+preprocess_time_per_im(ms): 9.00, inference_time_per_batch(ms): 738.00, postprocess_time_per_im(ms): 0.40
+------------------ Inference Time Info ----------------------
+total_time(ms): 876.3, img_num: 1, batch_size: 1
+average latency time(ms): 876.30, QPS: 1.141162
+preprocess_time_per_im(ms): 9.10, inference_time_per_batch(ms): 866.70, postprocess_time_per_im(ms): 0.50
+------------------ Inference Time Info ----------------------
+total_time(ms): 781.2, img_num: 1, batch_size: 1
+average latency time(ms): 781.20, QPS: 1.280082
+preprocess_time_per_im(ms): 8.90, inference_time_per_batch(ms): 772.00, postprocess_time_per_im(ms): 0.30
+------------------ Inference Time Info ----------------------
+total_time(ms): 1018.4, img_num: 1, batch_size: 1
+average latency time(ms): 1018.40, QPS: 0.981932
+preprocess_time_per_im(ms): 8.70, inference_time_per_batch(ms): 1009.30, postprocess_time_per_im(ms): 0.40
+------------------ Inference Time Info ----------------------
+total_time(ms): 1153.0, img_num: 1, batch_size: 1
+average latency time(ms): 1153.00, QPS: 0.867303
+preprocess_time_per_im(ms): 8.90, inference_time_per_batch(ms): 1143.70, postprocess_time_per_im(ms): 0.40
+------------------ Inference Time Info ----------------------
+total_time(ms): 663.8, img_num: 1, batch_size: 1
+average latency time(ms): 663.80, QPS: 1.506478
+preprocess_time_per_im(ms): 9.10, inference_time_per_batch(ms): 654.40, postprocess_time_per_im(ms): 0.30
+------------------ Inference Time Info ----------------------
+total_time(ms): 687.2, img_num: 1, batch_size: 1
+average latency time(ms): 687.20, QPS: 1.455180
+preprocess_time_per_im(ms): 8.40, inference_time_per_batch(ms): 678.40, postprocess_time_per_im(ms): 0.40
+------------------ Inference Time Info ----------------------
+total_time(ms): 837.3000000000001, img_num: 1, batch_size: 1
+average latency time(ms): 837.30, QPS: 1.194315
+preprocess_time_per_im(ms): 9.30, inference_time_per_batch(ms): 827.60, postprocess_time_per_im(ms): 0.40
+------------------ Inference Time Info ----------------------
+total_time(ms): 803.2, img_num: 1, batch_size: 1
+average latency time(ms): 803.20, QPS: 1.245020
+preprocess_time_per_im(ms): 8.90, inference_time_per_batch(ms): 793.90, postprocess_time_per_im(ms): 0.40
+------------------ Inference Time Info ----------------------
+total_time(ms): 781.8000000000001, img_num: 1, batch_size: 1
+average latency time(ms): 781.80, QPS: 1.279100
+preprocess_time_per_im(ms): 9.10, inference_time_per_batch(ms): 772.40, postprocess_time_per_im(ms): 0.30
+------------------ Inference Time Info ----------------------
+total_time(ms): 828.3000000000001, img_num: 1, batch_size: 1
+average latency time(ms): 828.30, QPS: 1.207292
+preprocess_time_per_im(ms): 8.70, inference_time_per_batch(ms): 819.30, postprocess_time_per_im(ms): 0.30
+ Run successfully with command - python3.7  ./STANET_Paddle/tutorials/infer/stanet_infer.py   --infer_dir=./STANET_Paddle/test_tipc/result/inference_model/ --img_dir=./STANET_Paddle/test_tipc/data/mini_levir_dataset --output_dir=./STANET_Paddle/test_tipc/result/predict_output --use_gpu=False --enable_mkldnn=False --cpu_threads=1 --enable_benchmark=True --use_tensorrt=False         > ./test_tipc/output/STANET/python_infer_cpu_usemkldnn_False_threads_1_precision_null_batchsize_False.log 2>&1 !  
+[06-15 18:33:10 MainThread @logger.py:242] Argv: ./STANET_Paddle/tutorials/infer/stanet_infer.py --infer_dir=./STANET_Paddle/test_tipc/result/inference_model/ --img_dir=./STANET_Paddle/test_tipc/data/mini_levir_dataset --output_dir=./STANET_Paddle/test_tipc/result/predict_output --use_gpu=False --enable_mkldnn=False --cpu_threads=2 --enable_benchmark=True --use_tensorrt=False
+[06-15 18:33:10 MainThread @utils.py:79] WRN paddlepaddle version: 2.3.0. The dynamic graph version of PARL is under development, not fully tested and supported
+2022-06-15 18:33:10,834-WARNING: type object 'QuantizationTransformPass' has no attribute '_supported_quantizable_op_type'
+2022-06-15 18:33:10,834-WARNING: If you want to use training-aware and post-training quantization, please use Paddle >= 1.8.4 or develop version
+----------------------------------------------------------------------------------------------------------------------------
+                                               Models supported by PaddleClas                                               
++-------------------+------------------------------------------------------------------------------------------------------+
+|       Series      |                                                 Name                                                 |
++-------------------+------------------------------------------------------------------------------------------------------+
+|      AlexNet      |                                               AlexNet                                                |
+|      DarkNet      |                                              DarkNet53                                               |
+|        DeiT       |       DeiT_base_distilled_patch16_224  DeiT_base_distilled_patch16_384  DeiT_base_patch16_224        |
+|                   |           DeiT_base_patch16_384  DeiT_small_distilled_patch16_224  DeiT_small_patch16_224            |
+|                   |                        DeiT_tiny_distilled_patch16_224  DeiT_tiny_patch16_224                        |
+|      DenseNet     |                   DenseNet121  DenseNet161  DenseNet169  DenseNet201  DenseNet264                    |
+|        DLA        |              DLA46_c  DLA60x_c  DLA34  DLA60  DLA60x  DLA102  DLA102x  DLA102x2  DLA169              |
+|        DPN        |                                 DPN68  DPN92  DPN98  DPN107  DPN131                                  |
+|    EfficientNet   | EfficientNetB0  EfficientNetB0_small  EfficientNetB1  EfficientNetB2  EfficientNetB3  EfficientNetB4 |
+|                   |                            EfficientNetB5  EfficientNetB6  EfficientNetB7                            |
+|       ESNet       |                           ESNet_x0_25  ESNet_x0_5  ESNet_x0_75  ESNet_x1_0                           |
+|      GhostNet     |                   GhostNet_x0_5  GhostNet_x1_0  GhostNet_x1_3  GhostNet_x1_3_ssld                    |
+|      HarDNet      |                           HarDNet39_ds  HarDNet68_ds  HarDNet68  HarDNet85                           |
+|       HRNet       |      HRNet_W18_C  HRNet_W30_C  HRNet_W32_C  HRNet_W40_C  HRNet_W44_C  HRNet_W48_C  HRNet_W64_C       |
+|                   |                                  HRNet_W18_C_ssld  HRNet_W48_C_ssld                                  |
+|     Inception     |                                 GoogLeNet  InceptionV3  InceptionV4                                  |
+|       MixNet      |                                     MixNet_S  MixNet_M  MixNet_L                                     |
+|    MobileNetV1    |        MobileNetV1_x0_25  MobileNetV1_x0_5  MobileNetV1_x0_75  MobileNetV1  MobileNetV1_ssld         |
+|    MobileNetV2    |        MobileNetV2_x0_25  MobileNetV2_x0_5  MobileNetV2_x0_75  MobileNetV2  MobileNetV2_x1_5         |
+|                   |                                  MobileNetV2_x2_0  MobileNetV2_ssld                                  |
+|    MobileNetV3    |   MobileNetV3_small_x0_35  MobileNetV3_small_x0_5  MobileNetV3_small_x0_75  MobileNetV3_small_x1_0   |
+|                   |  MobileNetV3_small_x1_25  MobileNetV3_large_x0_35  MobileNetV3_large_x0_5  MobileNetV3_large_x0_75   |
+|                   |             MobileNetV3_large_x1_0  MobileNetV3_large_x1_25  MobileNetV3_small_x1_0_ssld             |
+|                   |                                     MobileNetV3_large_x1_0_ssld                                      |
+|      PPLCNet      | PPLCNet_x0_25  PPLCNet_x0_35  PPLCNet_x0_5  PPLCNet_x0_75  PPLCNet_x1_0  PPLCNet_x1_5  PPLCNet_x2_0  |
+|                   |                                             PPLCNet_x2_5                                             |
+|       RedNet      |                          RedNet26  RedNet38  RedNet50  RedNet101  RedNet152                          |
+|       RegNet      |                                             RegNetX_4GF                                              |
+|      Res2Net      | Res2Net50_14w_8s  Res2Net50_26w_4s  Res2Net50_vd_26w_4s  Res2Net200_vd_26w_4s  Res2Net101_vd_26w_4s  |
+|                   |            Res2Net50_vd_26w_4s_ssld  Res2Net101_vd_26w_4s_ssld  Res2Net200_vd_26w_4s_ssld            |
+|      ResNeSt      |                                  ResNeSt50  ResNeSt50_fast_1s1x64d                                   |
+|       ResNet      |   ResNet18  ResNet18_vd  ResNet34  ResNet34_vd  ResNet50  ResNet50_vc  ResNet50_vd  ResNet50_vd_v2   |
+|                   |  ResNet101  ResNet101_vd  ResNet152  ResNet152_vd  ResNet200_vd  ResNet34_vd_ssld  ResNet50_vd_ssld  |
+|                   |        ResNet50_vd_ssld_v2  ResNet101_vd_ssld  Fix_ResNet50_vd_ssld_v2  ResNet50_ACNet_deploy        |
+|      ResNeXt      |      ResNeXt50_32x4d  ResNeXt50_vd_32x4d  ResNeXt50_64x4d  ResNeXt50_vd_64x4d  ResNeXt101_32x4d      |
+|                   |       ResNeXt101_vd_32x4d  ResNeXt101_32x8d_wsl  ResNeXt101_32x16d_wsl  ResNeXt101_32x32d_wsl        |
+|                   |       ResNeXt101_32x48d_wsl  Fix_ResNeXt101_32x48d_wsl  ResNeXt101_64x4d  ResNeXt101_vd_64x4d        |
+|                   |             ResNeXt152_32x4d  ResNeXt152_vd_32x4d  ResNeXt152_64x4d  ResNeXt152_vd_64x4d             |
+|       ReXNet      |                      ReXNet_1_0  ReXNet_1_3  ReXNet_1_5  ReXNet_2_0  ReXNet_3_0                      |
+|       SENet       | SENet154_vd  SE_HRNet_W64_C_ssld  SE_ResNet18_vd  SE_ResNet34_vd  SE_ResNet50_vd  SE_ResNeXt50_32x4d |
+|                   |                              SE_ResNeXt50_vd_32x4d  SE_ResNeXt101_32x4d                              |
+|    ShuffleNetV2   |   ShuffleNetV2_swish  ShuffleNetV2_x0_25  ShuffleNetV2_x0_33  ShuffleNetV2_x0_5  ShuffleNetV2_x1_0   |
+|                   |                                 ShuffleNetV2_x1_5  ShuffleNetV2_x2_0                                 |
+|     SqueezeNet    |                                     SqueezeNet1_0  SqueezeNet1_1                                     |
+|  SwinTransformer  | SwinTransformer_large_patch4_window7_224_22kto1k  SwinTransformer_large_patch4_window12_384_22kto1k  |
+|                   |  SwinTransformer_base_patch4_window7_224_22kto1k  SwinTransformer_base_patch4_window12_384_22kto1k   |
+|                   |          SwinTransformer_base_patch4_window12_384  SwinTransformer_base_patch4_window7_224           |
+|                   |          SwinTransformer_small_patch4_window7_224  SwinTransformer_tiny_patch4_window7_224           |
+|       Twins       |           pcpvt_small  pcpvt_base  pcpvt_large  alt_gvt_small  alt_gvt_base  alt_gvt_large           |
+|        VGG        |                                      VGG11  VGG13  VGG16  VGG19                                      |
+| VisionTransformer |       ViT_base_patch16_224  ViT_base_patch16_384  ViT_base_patch32_384  ViT_large_patch16_224        |
+|                   |                 ViT_large_patch16_384  ViT_large_patch32_384  ViT_small_patch16_224                  |
+|      Xception     |              Xception41  Xception41_deeplab  Xception65  Xception65_deeplab  Xception71              |
++-------------------+------------------------------------------------------------------------------------------------------+
+                                                                                                    Powered by PaddlePaddle!
+----------------------------------------------------------------------------------------------------------------------------
+2022-06-15 18:33:10 [INFO]      Model[STANet] loaded.
+---    fused 0 elementwise_add with relu activation
+---    fused 0 elementwise_add with tanh activation
+---    fused 0 elementwise_add with leaky_relu activation
+---    fused 0 elementwise_add with swish activation
+---    fused 0 elementwise_add with hardswish activation
+---    fused 0 elementwise_add with sqrt activation
+---    fused 0 elementwise_add with abs activation
+---    fused 0 elementwise_add with clip activation
+---    fused 0 elementwise_add with gelu activation
+---    fused 0 elementwise_add with relu6 activation
+---    fused 0 elementwise_add with sigmoid activation
+---    fused 0 elementwise_sub with relu activation
+---    fused 0 elementwise_sub with tanh activation
+---    fused 0 elementwise_sub with leaky_relu activation
+---    fused 0 elementwise_sub with swish activation
+---    fused 0 elementwise_sub with hardswish activation
+---    fused 0 elementwise_sub with sqrt activation
+---    fused 1 elementwise_sub with abs activation
+---    fused 0 elementwise_sub with clip activation
+---    fused 0 elementwise_sub with gelu activation
+---    fused 0 elementwise_sub with relu6 activation
+---    fused 0 elementwise_sub with sigmoid activation
+---    fused 0 elementwise_mul with relu activation
+---    fused 0 elementwise_mul with tanh activation
+---    fused 0 elementwise_mul with leaky_relu activation
+---    fused 0 elementwise_mul with swish activation
+---    fused 0 elementwise_mul with hardswish activation
+---    fused 0 elementwise_mul with sqrt activation
+---    fused 0 elementwise_mul with abs activation
+---    fused 0 elementwise_mul with clip activation
+---    fused 0 elementwise_mul with gelu activation
+---    fused 0 elementwise_mul with relu6 activation
+---    fused 0 elementwise_mul with sigmoid activation
+total file number is 16
+------------------ Inference Time Info ----------------------
+total_time(ms): 1012.8, img_num: 1, batch_size: 1
+average latency time(ms): 1012.80, QPS: 0.987362
+preprocess_time_per_im(ms): 8.90, inference_time_per_batch(ms): 1003.40, postprocess_time_per_im(ms): 0.50
+------------------ Inference Time Info ----------------------
+total_time(ms): 678.9, img_num: 1, batch_size: 1
+average latency time(ms): 678.90, QPS: 1.472971
+preprocess_time_per_im(ms): 9.20, inference_time_per_batch(ms): 669.40, postprocess_time_per_im(ms): 0.30
+------------------ Inference Time Info ----------------------
+total_time(ms): 885.6, img_num: 1, batch_size: 1
+average latency time(ms): 885.60, QPS: 1.129178
+preprocess_time_per_im(ms): 8.80, inference_time_per_batch(ms): 876.50, postprocess_time_per_im(ms): 0.30
+------------------ Inference Time Info ----------------------
+total_time(ms): 802.0, img_num: 1, batch_size: 1
+average latency time(ms): 802.00, QPS: 1.246883
+preprocess_time_per_im(ms): 9.30, inference_time_per_batch(ms): 792.10, postprocess_time_per_im(ms): 0.60
+------------------ Inference Time Info ----------------------
+total_time(ms): 669.1, img_num: 1, batch_size: 1
+average latency time(ms): 669.10, QPS: 1.494545
+preprocess_time_per_im(ms): 9.70, inference_time_per_batch(ms): 659.10, postprocess_time_per_im(ms): 0.30
+------------------ Inference Time Info ----------------------
+total_time(ms): 671.4, img_num: 1, batch_size: 1
+average latency time(ms): 671.40, QPS: 1.489425
+preprocess_time_per_im(ms): 8.90, inference_time_per_batch(ms): 662.20, postprocess_time_per_im(ms): 0.30
+------------------ Inference Time Info ----------------------
+total_time(ms): 687.0, img_num: 1, batch_size: 1
+average latency time(ms): 687.00, QPS: 1.455604
+preprocess_time_per_im(ms): 8.80, inference_time_per_batch(ms): 677.70, postprocess_time_per_im(ms): 0.50
+------------------ Inference Time Info ----------------------
+total_time(ms): 845.7, img_num: 1, batch_size: 1
+average latency time(ms): 845.70, QPS: 1.182452
+preprocess_time_per_im(ms): 9.70, inference_time_per_batch(ms): 835.70, postprocess_time_per_im(ms): 0.30
+------------------ Inference Time Info ----------------------
+total_time(ms): 794.5, img_num: 1, batch_size: 1
+average latency time(ms): 794.50, QPS: 1.258653
+preprocess_time_per_im(ms): 8.90, inference_time_per_batch(ms): 785.20, postprocess_time_per_im(ms): 0.40
+------------------ Inference Time Info ----------------------
+total_time(ms): 951.6, img_num: 1, batch_size: 1
+average latency time(ms): 951.60, QPS: 1.050862
+preprocess_time_per_im(ms): 8.90, inference_time_per_batch(ms): 942.20, postprocess_time_per_im(ms): 0.50
+------------------ Inference Time Info ----------------------
+total_time(ms): 930.0, img_num: 1, batch_size: 1
+average latency time(ms): 930.00, QPS: 1.075269
+preprocess_time_per_im(ms): 9.50, inference_time_per_batch(ms): 920.10, postprocess_time_per_im(ms): 0.40
+------------------ Inference Time Info ----------------------
+total_time(ms): 1092.5, img_num: 1, batch_size: 1
+average latency time(ms): 1092.50, QPS: 0.915332
+preprocess_time_per_im(ms): 8.80, inference_time_per_batch(ms): 1083.20, postprocess_time_per_im(ms): 0.50
+------------------ Inference Time Info ----------------------
+total_time(ms): 949.6, img_num: 1, batch_size: 1
+average latency time(ms): 949.60, QPS: 1.053075
+preprocess_time_per_im(ms): 9.30, inference_time_per_batch(ms): 939.60, postprocess_time_per_im(ms): 0.70
+------------------ Inference Time Info ----------------------
+total_time(ms): 996.0, img_num: 1, batch_size: 1
+average latency time(ms): 996.00, QPS: 1.004016
+preprocess_time_per_im(ms): 9.60, inference_time_per_batch(ms): 986.00, postprocess_time_per_im(ms): 0.40
+------------------ Inference Time Info ----------------------
+total_time(ms): 948.4, img_num: 1, batch_size: 1
+average latency time(ms): 948.40, QPS: 1.054407
+preprocess_time_per_im(ms): 9.60, inference_time_per_batch(ms): 938.40, postprocess_time_per_im(ms): 0.40
+------------------ Inference Time Info ----------------------
+total_time(ms): 820.6, img_num: 1, batch_size: 1
+average latency time(ms): 820.60, QPS: 1.218621
+preprocess_time_per_im(ms): 8.90, inference_time_per_batch(ms): 811.30, postprocess_time_per_im(ms): 0.40
+ Run successfully with command - python3.7  ./STANET_Paddle/tutorials/infer/stanet_infer.py   --infer_dir=./STANET_Paddle/test_tipc/result/inference_model/ --img_dir=./STANET_Paddle/test_tipc/data/mini_levir_dataset --output_dir=./STANET_Paddle/test_tipc/result/predict_output --use_gpu=False --enable_mkldnn=False --cpu_threads=2 --enable_benchmark=True --use_tensorrt=False         > ./test_tipc/output/STANET/python_infer_cpu_usemkldnn_False_threads_2_precision_null_batchsize_False.log 2>&1 !  
+aistudio@jupyter-2315405-4166493:~$ 
+
+```
 ## 6.代码结构与详细说明
 
 ```

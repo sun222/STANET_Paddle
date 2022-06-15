@@ -21,7 +21,7 @@ null:null
 null:null
 ##
 ===========================eval_params===========================
-eval:null
+eval: ./STANET_Paddle/tutorials/eval/stanet_eval_bone.py --data_dir=./STANET_Paddle/test_tipc/data/mini_levir_dataset    --state_dict_path=./STANET_Paddle/test_tipc/result/stanet/best_model/model.pdparams
 null:null
 ##
 

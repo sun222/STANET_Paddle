@@ -358,7 +358,7 @@ else
                 # run test
                 if [ ${eval_py} != "null" ]; then
                     set_eval_params1=$(func_set_params "${eval_key1}" "${eval_value1}")
-                    eval_cmd="${python} ${eval_py} ${set_use_gpu} ${set_eval_params1}"
+                    eval_cmd="${python} ${eval_py} "
                     eval $eval_cmd
                     status_check $? "${eval_cmd}" "${status_log}"
                 fi
