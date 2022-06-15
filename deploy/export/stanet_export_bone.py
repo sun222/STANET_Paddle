@@ -56,7 +56,22 @@ if __name__ == '__main__':
     os.environ['PADDLESEG_EXPORT_STAGE'] = 'True'
 
 
-    model = pdrs.tasks.STANet( in_channels=3, num_classes=2, att_type='PAM', ds_factor=1,backbonetype="MobileNetV3_small_x1_25")
+    # model = pdrs.tasks.STANet( in_channels=3, num_classes=2, att_type='PAM', ds_factor=1,backbonetype="MobileNetV3_small_x1_25")
+
+    # model = pdrs.tasks.STANet( in_channels=3, num_classes=2, att_type='PAM', ds_factor=1,backbonetype="MobileNetV3_large_x1_0")
+
+    # model = pdrs.tasks.STANet( in_channels=3, num_classes=2, att_type='PAM', ds_factor=1,backbonetype="MobileNetV1")
+
+    model = pdrs.tasks.STANet( in_channels=3, num_classes=2, att_type='PAM', ds_factor=1,backbonetype="ESNet_x1_0")
+
+    # 907
+    # model = pdrs.tasks.STANet( in_channels=3, num_classes=2, att_type='PAM', ds_factor=1,backbonetype="ResNet50_vd")
+
+
+    # model = pdrs.tasks.STANet( in_channels=3, num_classes=2, att_type='PAM', ds_factor=1,backbonetype="PPLCNet_x1_0")
+
+
+
     model.net_initialize(pretrain_weights = args.state_dict_path)
 
 

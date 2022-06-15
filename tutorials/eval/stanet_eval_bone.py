@@ -53,7 +53,18 @@ if __name__ == "__main__":
     # 初始化模型，并进行训练
     # 可使用VisualDL查看训练指标，参考https://github.com/PaddlePaddle/paddlers/blob/develop/docs/visualdl.md
     num_classes = 2
-    model = pdrs.tasks.STANet( in_channels=3, num_classes=num_classes, att_type='PAM', ds_factor=1,backbonetype="MobileNetV3_small_x1_25")
+    # model = pdrs.tasks.STANet( in_channels=3, num_classes=num_classes, att_type='PAM', ds_factor=1,backbonetype="MobileNetV3_small_x1_25")
+    # 907
+    model = pdrs.tasks.STANet( in_channels=3, num_classes=num_classes, att_type='PAM', ds_factor=1,backbonetype="ESNet_x1_0")
+
+    # 907
+    # model = pdrs.tasks.STANet( in_channels=3, num_classes=num_classes, att_type='PAM', ds_factor=1,backbonetype="ResNet50_vd")
+    # model = pdrs.tasks.STANet( in_channels=3, num_classes=num_classes, att_type='PAM', ds_factor=1,backbonetype="MobileNetV1")  
+
+    # model = pdrs.tasks.STANet( in_channels=3, num_classes=num_classes, att_type='PAM', ds_factor=1,backbonetype="MobileNetV3_large_x1_0")    
+
+    # model = pdrs.tasks.STANet( in_channels=3, num_classes=num_classes, att_type='PAM', ds_factor=1,backbonetype="PPLCNet_x1_0")    
+
     model.net_initialize(pretrain_weights = state_dict_path)
     model.net.eval()
     eval_metrics = model.evaluate(eval_dataset)

@@ -9,13 +9,14 @@
 # Unless required by applicable law or agreed to in writing, software
 # distributed under the License is distributed on an "AS IS" BASIS,
 # WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
-# See the License for the specific language governing permissions and
+# See the License for the specific language governing permissions ands
 # limitations under the License.
 
 import paddle
 import paddle.nn as nn
 import paddle.nn.functional as F
 
+from .backbones import esnet 
 from .backbones import resnet
 from .backbones import mobilenet 
 from .backbones import resnet_2 
@@ -90,8 +91,11 @@ def build_feat_extractor(in_ch, width,backbonetype):
 
 
     elif  backbonetype=="MobileNetV3_small_x1_25":
-
         return nn.Sequential(Backbone(in_ch, backbonetype), Decoder(width,infeat=[24,32,64,120]))
+
+
+    elif  backbonetype=="ESNet_x1_0":
+        return nn.Sequential(Backbone(in_ch, backbonetype), Decoder(width,infeat=[120,232,464]))
     else:
         return nn.Sequential(Backbone(in_ch, backbonetype), Decoder(width,infeat=[64,128,256,512]))
 
@@ -135,6 +139,9 @@ class Backbone(nn.Layer, KaimingInitMixin):
         elif arch == 'MobileNetV3_small_x1_25':
             self.basenet=mobilenet.MobileNetV3_small_x1_25( pretrained=pretrained, use_ssld=False ,return_stages=True)   
 
+        elif arch == 'ESNet_x1_0':
+            self.basenet=esnet.ESNet_x1_0(pretrained=pretrained,return_stages=True)   
+
 
         else:
             raise ValueError
@@ -177,10 +184,9 @@ class Backbone(nn.Layer, KaimingInitMixin):
         # x=self.basenet.conv(x)
 
         y=self.basenet.blocks
-        x = self.basenet.conv(x)
+        x = self.basenet.conv1(x)
         feat=[]
         x=y[0](x)
-        feat.append(x) 
         x=y[1](x) 
         x=y[2](x) 
         feat.append(x) 
@@ -189,12 +195,12 @@ class Backbone(nn.Layer, KaimingInitMixin):
         x=y[5](x)
         x=y[6](x)  
         x=y[7](x) 
-        feat.append(x)
         x=y[8](x)
-        x=y[9](x)  
+        x=y[9](x) 
+        feat.append(x)
         x=y[10](x) 
-
-
+        x=y[11](x)  
+        x=y[12](x) 
         feat.append(x) 
         return feat
 
@@ -220,7 +226,14 @@ class Backbone(nn.Layer, KaimingInitMixin):
         # return feat
 
     def _trim_resnet(self):
-        self.basenet.avgpool = Identity()
+
+        self.basenet.max_pool= Identity()
+        self.basenet.conv2 = Identity()
+        self.basenet.avg_pool = Identity()
+        self.basenet.last_conv = Identity()
+        self.basenet.hardswish = Identity()
+        self.basenet.dropout = Identity()
+        self.basenet.flatten = Identity()
         self.basenet.fc = Identity()
 
 
@@ -233,15 +246,14 @@ class Decoder(nn.Layer, KaimingInitMixin):
         # self.dr4 = Conv1x1(512, 96, norm=True, act=True)
 
 
-        self.dr1 = Conv1x1(infeat[0], 96, norm=True, act=True)
-        self.dr2 = Conv1x1(infeat[1], 96, norm=True, act=True)
-        self.dr3 = Conv1x1(infeat[2], 96, norm=True, act=True)
-        self.dr4 = Conv1x1(infeat[3], 96, norm=True, act=True)
+        self.dr1 = Conv1x1(infeat[0], 120, norm=True, act=True)
+        self.dr2 = Conv1x1(infeat[1], 232, norm=True, act=True)
+        self.dr3 = Conv1x1(infeat[2], 464, norm=True, act=True)
 
 
         self.conv_out = nn.Sequential(
             Conv3x3(
-                384, 256, norm=True, act=True),
+                816, 256, norm=True, act=True),
             nn.Dropout(0.5),
             Conv1x1(
                 256, f_ch, norm=True, act=True))
@@ -252,16 +264,16 @@ class Decoder(nn.Layer, KaimingInitMixin):
         f1 = self.dr1(feats[0])
         f2 = self.dr2(feats[1])
         f3 = self.dr3(feats[2])
-        f4 = self.dr4(feats[3])
 
+        # f1 = F.interpolate(
+        #     f1, size=[32,32], mode='bilinear', align_corners=True)
         f2 = F.interpolate(
-            f2, size=paddle.shape(f1)[2:], mode='bilinear', align_corners=True)
+            f2, size=[64,64], mode='bilinear', align_corners=True)
         f3 = F.interpolate(
-            f3, size=paddle.shape(f1)[2:], mode='bilinear', align_corners=True)
-        f4 = F.interpolate(
-            f4, size=paddle.shape(f1)[2:], mode='bilinear', align_corners=True)
+            f3, size=[64,64], mode='bilinear', align_corners=True)
 
-        x = paddle.concat([f1, f2, f3, f4], axis=1)
+
+        x = paddle.concat([f1, f2, f3], axis=1)
         y = self.conv_out(x)
 
         return y

@@ -21,6 +21,7 @@ def get_parser():
     parser.add_argument('--num_epoch', type=int, default=100, help='epoch number')
     parser.add_argument('--batch_size', type=int, default=8, help='batch size')
     parser.add_argument('--save_epoch', type=int, default=3 ,help='save epoch')
+    parser.add_argument('--resume_checkpoint', type=str, default=None, help='path to resume_checkpoint')
     return parser
 
 # # 数据集存放目录
@@ -56,8 +57,14 @@ if __name__ == "__main__":
     # 定义训练和验证时的transforms
     # API说明：https://github.com/PaddlePaddle/paddlers/blob/develop/docs/apis/transforms/transforms.md
     train_transforms = T.Compose([
-        T.Resize(target_size=256),
         T.RandomHorizontalFlip(),
+        T.RandomVerticalFlip(),      
+        T.MixupImage(),
+        T.RandomDistort(),
+        T.RandomBlur(),
+        T.RandomSwap(),
+        T.Resize(target_size=256),
+        # paddle.vision.transforms.RandomRotation(90),
         T.Normalize(
             mean=[0.5, 0.5, 0.5], std=[0.5, 0.5, 0.5]),
     ])
@@ -91,7 +98,28 @@ if __name__ == "__main__":
     # 初始化模型，并进行训练
     # 可使用VisualDL查看训练指标，参考https://github.com/PaddlePaddle/paddlers/blob/develop/docs/visualdl.md
     num_classes = 2
-    model = pdrs.tasks.STANet( in_channels=3, num_classes=num_classes, att_type='PAM', ds_factor=1,backbonetype="MobileNetV3_small_x1_25")
+
+    #883
+    # model = pdrs.tasks.STANet( in_channels=3, num_classes=num_classes, att_type='PAM', ds_factor=1,backbonetype="MobileNetV3_small_x1_25")
+    #887
+    # model = pdrs.tasks.STANet( in_channels=3, num_classes=num_classes, att_type='PAM', ds_factor=1,backbonetype="MobileNetV1")
+
+    #901
+    # model = pdrs.tasks.STANet( in_channels=3, num_classes=num_classes, att_type='PAM', ds_factor=1,backbonetype="MobileNetV3_large_x1_0")
+
+    #907
+    model = pdrs.tasks.STANet( in_channels=3, num_classes=num_classes, att_type='PAM', ds_factor=1,backbonetype="ESNet_x1_0")
+
+
+
+
+    # model = pdrs.tasks.STANet( in_channels=3, num_classes=num_classes, att_type='PAM', ds_factor=1,backbonetype="PPLCNet_x1_0")
+
+    
+
+    # too bigs
+    # model = pdrs.tasks.STANet( in_channels=3, num_classes=num_classes, att_type='PAM', ds_factor=1,backbonetype="ResNet50_vd")    
+
     # 制定定步长学习率衰减策略
     lr_scheduler = paddle.optimizer.lr.StepDecay(
         LR,
@@ -113,7 +141,7 @@ if __name__ == "__main__":
         optimizer = optimizer,
         save_interval_epochs=SAVE_INTERVAL_EPOCHS,
         # 每多少次迭代记录一次日志
-        log_interval_steps=20,
+        log_interval_steps=100,
         # 是否使用early stopping策略，当精度不再改善时提前终止训练
         early_stop=False,
         # 是否启用VisualDL日志功能
@@ -121,5 +149,5 @@ if __name__ == "__main__":
         # pretrain_weights=None,
         save_dir=EXP_DIR,
         # 指定从某个检查点继续训练
-        resume_checkpoint=None
+        resume_checkpoint=args.resume_checkpoint
         )
