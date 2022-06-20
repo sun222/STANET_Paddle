@@ -11,7 +11,7 @@ STANet设计了两种类型的自我注意模块。基本时空注意模块(BAM)
 
 ## 2.复现精度
 
-在LEVIR的测试集的测试效果如下表,达到验收指标，F1-Score=0.9432  满足精度要求 
+在LEVIR的测试集的测试效果如下表,达到验收指标，F1-Score=0.9152  满足精度要求 
 model.pdiparams文件大小为14.6m
 model.pdmodel文件大小为5.07m，和为19.67m 满足要求
 综上所述 满足挑战指标要求
@@ -134,130 +134,6 @@ python ./STANET_Paddle/tools/create_list.py --image_folder ./dataset/test --A A 
 - img_dir：用于推理的图片路径
 - output_dir：预测结果输出路径
 
-### 使用静态图评估（非必要！！，只是验证精度没有损失！！）
-
-可以使用stanet_infer.py脚本进行测试
-
-```shell
-!python ./STANET_Paddle/tutorials/stanet_infer_eval.py   --infer_dir=./inference_model_bone   --img_dir=./dataset/   --output_dir=./STANET_Paddle/test_tipc/result/predict_output
-```
-**参数介绍**：
-- infer_dir:模型文件路径
-- img_dir：用于推理的图片路径
-- output_dir：预测结果输出路径
-
-
-```shell
-[06-15 18:15:54 MainThread @logger.py:242] Argv: ./STANET_Paddle/tutorials/stanet_infer_eval.py --infer_dir=./home/aistudio/inference_model_bone/ --img_dir=./dataset/ --output_dir=./STANET_Paddle/test_tipc/result/predict_output
-[06-15 18:15:54 MainThread @utils.py:79] WRN paddlepaddle version: 2.3.0. The dynamic graph version of PARL is under development, not fully tested and supported
-2022-06-15 18:15:55,183-WARNING: type object 'QuantizationTransformPass' has no attribute '_supported_quantizable_op_type'
-2022-06-15 18:15:55,183-WARNING: If you want to use training-aware and post-training quantization, please use Paddle >= 1.8.4 or develop version
---------------------------------------------------------------------------
-                      Models supported by PaddleClas                      
-+-------------------+----------------------------------------------------+
-|       Series      |                        Name                        |
-+-------------------+----------------------------------------------------+
-|      AlexNet      |                      AlexNet                       |
-|      DarkNet      |                     DarkNet53                      |
-|        DeiT       |          DeiT_base_distilled_patch16_224           |
-|                   |          DeiT_base_distilled_patch16_384           |
-|                   |    DeiT_base_patch16_224  DeiT_base_patch16_384    |
-|                   |          DeiT_small_distilled_patch16_224          |
-|                   |               DeiT_small_patch16_224               |
-|                   |          DeiT_tiny_distilled_patch16_224           |
-|                   |               DeiT_tiny_patch16_224                |
-|      DenseNet     | DenseNet121  DenseNet161  DenseNet169  DenseNet201 |
-|                   |                    DenseNet264                     |
-|        DLA        |  DLA46_c  DLA60x_c  DLA34  DLA60  DLA60x  DLA102   |
-|                   |             DLA102x  DLA102x2  DLA169              |
-|        DPN        |        DPN68  DPN92  DPN98  DPN107  DPN131         |
-|    EfficientNet   |        EfficientNetB0  EfficientNetB0_small        |
-|                   |   EfficientNetB1  EfficientNetB2  EfficientNetB3   |
-|                   |   EfficientNetB4  EfficientNetB5  EfficientNetB6   |
-|                   |                   EfficientNetB7                   |
-|       ESNet       |  ESNet_x0_25  ESNet_x0_5  ESNet_x0_75  ESNet_x1_0  |
-|      GhostNet     |    GhostNet_x0_5  GhostNet_x1_0  GhostNet_x1_3     |
-|                   |                 GhostNet_x1_3_ssld                 |
-|      HarDNet      |  HarDNet39_ds  HarDNet68_ds  HarDNet68  HarDNet85  |
-|       HRNet       | HRNet_W18_C  HRNet_W30_C  HRNet_W32_C  HRNet_W40_C |
-|                   |       HRNet_W44_C  HRNet_W48_C  HRNet_W64_C        |
-|                   |         HRNet_W18_C_ssld  HRNet_W48_C_ssld         |
-|     Inception     |        GoogLeNet  InceptionV3  InceptionV4         |
-|       MixNet      |            MixNet_S  MixNet_M  MixNet_L            |
-|    MobileNetV1    |        MobileNetV1_x0_25  MobileNetV1_x0_5         |
-|                   |  MobileNetV1_x0_75  MobileNetV1  MobileNetV1_ssld  |
-|    MobileNetV2    |        MobileNetV2_x0_25  MobileNetV2_x0_5         |
-|                   |  MobileNetV2_x0_75  MobileNetV2  MobileNetV2_x1_5  |
-|                   |         MobileNetV2_x2_0  MobileNetV2_ssld         |
-|    MobileNetV3    |  MobileNetV3_small_x0_35  MobileNetV3_small_x0_5   |
-|                   |  MobileNetV3_small_x0_75  MobileNetV3_small_x1_0   |
-|                   |  MobileNetV3_small_x1_25  MobileNetV3_large_x0_35  |
-|                   |  MobileNetV3_large_x0_5  MobileNetV3_large_x0_75   |
-|                   |  MobileNetV3_large_x1_0  MobileNetV3_large_x1_25   |
-|                   |            MobileNetV3_small_x1_0_ssld             |
-|                   |            MobileNetV3_large_x1_0_ssld             |
-|      PPLCNet      |     PPLCNet_x0_25  PPLCNet_x0_35  PPLCNet_x0_5     |
-|                   |     PPLCNet_x0_75  PPLCNet_x1_0  PPLCNet_x1_5      |
-|                   |             PPLCNet_x2_0  PPLCNet_x2_5             |
-|       RedNet      | RedNet26  RedNet38  RedNet50  RedNet101  RedNet152 |
-|       RegNet      |                    RegNetX_4GF                     |
-|      Res2Net      |         Res2Net50_14w_8s  Res2Net50_26w_4s         |
-|                   |     Res2Net50_vd_26w_4s  Res2Net200_vd_26w_4s      |
-|                   |   Res2Net101_vd_26w_4s  Res2Net50_vd_26w_4s_ssld   |
-|                   |             Res2Net101_vd_26w_4s_ssld              |
-|                   |             Res2Net200_vd_26w_4s_ssld              |
-|      ResNeSt      |         ResNeSt50  ResNeSt50_fast_1s1x64d          |
-|       ResNet      |    ResNet18  ResNet18_vd  ResNet34  ResNet34_vd    |
-|                   | ResNet50  ResNet50_vc  ResNet50_vd  ResNet50_vd_v2 |
-|                   |  ResNet101  ResNet101_vd  ResNet152  ResNet152_vd  |
-|                   |  ResNet200_vd  ResNet34_vd_ssld  ResNet50_vd_ssld  |
-|                   |       ResNet50_vd_ssld_v2  ResNet101_vd_ssld       |
-|                   |   Fix_ResNet50_vd_ssld_v2  ResNet50_ACNet_deploy   |
-|      ResNeXt      |        ResNeXt50_32x4d  ResNeXt50_vd_32x4d         |
-|                   |        ResNeXt50_64x4d  ResNeXt50_vd_64x4d         |
-|                   |       ResNeXt101_32x4d  ResNeXt101_vd_32x4d        |
-|                   |    ResNeXt101_32x8d_wsl  ResNeXt101_32x16d_wsl     |
-|                   |    ResNeXt101_32x32d_wsl  ResNeXt101_32x48d_wsl    |
-|                   |    Fix_ResNeXt101_32x48d_wsl  ResNeXt101_64x4d     |
-|                   |       ResNeXt101_vd_64x4d  ResNeXt152_32x4d        |
-|                   |       ResNeXt152_vd_32x4d  ResNeXt152_64x4d        |
-|                   |                ResNeXt152_vd_64x4d                 |
-|       ReXNet      |   ReXNet_1_0  ReXNet_1_3  ReXNet_1_5  ReXNet_2_0   |
-|                   |                     ReXNet_3_0                     |
-|       SENet       |  SENet154_vd  SE_HRNet_W64_C_ssld  SE_ResNet18_vd  |
-|                   | SE_ResNet34_vd  SE_ResNet50_vd  SE_ResNeXt50_32x4d |
-|                   |     SE_ResNeXt50_vd_32x4d  SE_ResNeXt101_32x4d     |
-|    ShuffleNetV2   |       ShuffleNetV2_swish  ShuffleNetV2_x0_25       |
-|                   |       ShuffleNetV2_x0_33  ShuffleNetV2_x0_5        |
-|                   |        ShuffleNetV2_x1_0  ShuffleNetV2_x1_5        |
-|                   |                 ShuffleNetV2_x2_0                  |
-|     SqueezeNet    |            SqueezeNet1_0  SqueezeNet1_1            |
-|  SwinTransformer  |  SwinTransformer_large_patch4_window7_224_22kto1k  |
-|                   | SwinTransformer_large_patch4_window12_384_22kto1k  |
-|                   |  SwinTransformer_base_patch4_window7_224_22kto1k   |
-|                   |  SwinTransformer_base_patch4_window12_384_22kto1k  |
-|                   |      SwinTransformer_base_patch4_window12_384      |
-|                   |      SwinTransformer_base_patch4_window7_224       |
-|                   |      SwinTransformer_small_patch4_window7_224      |
-|                   |      SwinTransformer_tiny_patch4_window7_224       |
-|       Twins       |        pcpvt_small  pcpvt_base  pcpvt_large        |
-|                   |     alt_gvt_small  alt_gvt_base  alt_gvt_large     |
-|        VGG        |             VGG11  VGG13  VGG16  VGG19             |
-| VisionTransformer |     ViT_base_patch16_224  ViT_base_patch16_384     |
-|                   |    ViT_base_patch32_384  ViT_large_patch16_224     |
-|                   |    ViT_large_patch16_384  ViT_large_patch32_384    |
-|                   |               ViT_small_patch16_224                |
-|      Xception     |     Xception41  Xception41_deeplab  Xception65     |
-|                   |           Xception65_deeplab  Xception71           |
-+-------------------+----------------------------------------------------+
-                                                  Powered by PaddlePaddle!
---------------------------------------------------------------------------
-2022-06-15 18:15:55 [INFO]	1024 samples in file ./dataset/val.txt
-2022-06-15 18:15:55 [INFO]	Model[STANet] loaded.
-[0.9962995 0.9146327]
-
-
-```
 
 
 
@@ -1013,4 +889,9 @@ StaNet-Paddle
 
 部分功能参考 [基于Paddle复现SNUNet-CD](https://github.com/kongdebug/SNUNet-Paddle)，
 
+## 10.竞赛过程
+
+做的模型挑战赛，通过官方的推荐方法完成backbone的替换、修改通道数、调整网络结构等等达到90的f1指标。
+
+这时候明显感觉到，很快就过拟合，通过框架里的各种图像增强技术叠加达到91的f1指标
 
