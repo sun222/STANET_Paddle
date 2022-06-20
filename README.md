@@ -13,7 +13,7 @@ STANet设计了两种类型的自我注意模块。基本时空注意模块(BAM)
 
 在LEVIR的测试集的测试效果如下表,达到验收指标，F1-Score=0.9152  满足精度要求 
 model.pdiparams文件大小为14.6m
-model.pdmodel文件大小为5.07m，和为19.67m 满足要求
+model.pdmodel文件大小为5.11m，和为19.7m 满足要求
 综上所述 满足挑战指标要求
 
 
@@ -63,6 +63,8 @@ python ./STANET_Paddle/tools/create_list.py --image_folder ./dataset/test --A A 
 
 运行一下命令进行模型训练，在训练过程中会对模型进行评估，启用了VisualDL日志功能，运行之后在`/output/stanet/vdl_log` 文件夹下找到对应的日志文件
 
+训练过程中的vdl文件为vdlrecords.1655664431.log
+
 ```shell
 !python ./STANET_Paddle/tutorials/train/stanet_train_bonesmall.py --data_dir=./dataset/   --out_dir=./output1/stanet/   --batch_size=8     --num_epoch=100
 ```
@@ -74,19 +76,20 @@ python ./STANET_Paddle/tools/create_list.py --image_folder ./dataset/test --A A 
 - out_dir:模型输出文件夹
 - batch_size：batch大小
 
-其他超参数已经设置好。最后一个epoch结束，模型验证日志如下：
-```shell
+其他超参数已经设置好。最后一个epoch结束 
 
-```
+
+
 达到验收指标。
 
 
 ### 模型验证
 
 除了可以再训练过程中验证模型精度，可以使用stanet_eval_bone.py脚本进行测试，
-推理模型为：
-链接：https://pan.baidu.com/s/1V-womwe2ctN6dASNCgf5aQ 
-提取码：63eu
+
+动态模型为：
+链接：https://pan.baidu.com/s/1LHsQ6nIUwoJVfHkDSIHHLA 
+提取码：y90l
 
 ```shell
 !python ./STANET_Paddle/tutorials/eval/stanet_eval_bone.py --data_dir=./dataset/   --state_dict_path=./output1/stanet/best_model/model.pdparams
@@ -100,6 +103,10 @@ python ./STANET_Paddle/tools/create_list.py --image_folder ./dataset/test --A A 
 输出如下：
 
 ```shell
+2022-06-20 16:39:52 [INFO]	Loading pretrained model from best_model/model.pdparams
+2022-06-20 16:39:52 [INFO]	There are 393/393 variables loaded into STANet.
+2022-06-20 16:39:52 [INFO]	Start to evaluate(total_samples=1024, total_steps=1024)...
+OrderedDict([('miou', 0.9182049414147296), ('category_iou', array([0.99265375, 0.84375614])), ('oacc', 0.992934063076973), ('category_acc', array([0.99602765, 0.92133201])), ('kappa', 0.9115713464149582), ('category_F1-score', array([0.99631333, 0.91525785]))])
 ```
 
 
