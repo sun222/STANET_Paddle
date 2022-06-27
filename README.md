@@ -900,8 +900,11 @@ StaNet-Paddle
 
 ## 对Paddle的复现项目的修正
 
-首先，这篇文章对我，做模型挑战的帮助很大，给了我很多思路[《产业级SOTA模型优化指南》](https://github.com/PaddlePaddle/models/tree/release/2.2/tutorials/pp-series)，我按照指南一步一步走，先换了一个轻量级的模型（esnet）（注意要将模型中用不到的部分去掉，来减少参
-数量），数据增广增加了很多种增广方式。
+首先，这篇文章对我，做模型挑战的帮助很大，给了我很多思路[《产业级SOTA模型优化指南》](https://github.com/PaddlePaddle/models/tree/release/2.2/tutorials/pp-series)，我按照指南一步一步走。
+
+ esnet在imagenet的精度为ImageNet/Acc 0.7392，原模型使用的backbone为res18精度为ImageNet/Acc 0.7098，backbone的特征提取能力增强，模型的大小也大大降低，所以我选它作为backbone。我这次只用到了其中的cov1和blocks两个组件。其他组件例如maxpool，我认为可能对基于语义分割的任务意义不大，所以我去掉了（注意要将模型中用不到的部分去掉，来减少参数量）。
+ 
+模型训练很快就出现过拟合现象，我选择使用多种数据增广方式来缓解 。例如RandomHorizontalFlip、RandomVerticalFlip、MixupImage、RandomDistort、RandomBlur、RandomSwap。
 
 原模型使用backbone的方式，是将backbone的多尺寸输出的c统一降低到90，之后尺寸放大到相同的大小，这带来了 一定的精度损失，我修改这一点通过1*1卷积根据输出的维度，处理后仍为相同的维度。
 
